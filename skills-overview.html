@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fórum Telecom — Skills do NetAgent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0e0c;
+    --bg-1: #111613;
+    --bg-2: #161d1a;
+    --bg-3: #1c2521;
+    --line: rgba(0, 255, 145, 0.12);
+    --line-strong: rgba(0, 255, 145, 0.28);
+    --text: #e8efe9;
+    --text-dim: #8a9a8f;
+    --text-faint: #5a6e62;
+    --accent: #00ff91;
+    --accent-dim: #00b765;
+    --accent-glow: rgba(0, 255, 145, 0.35);
+    --warn: #ffb800;
+    --danger: #ff4d6d;
+    --cyan: #00d4ff;
+    --magenta: #ff5edc;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    --display: 'Fraunces', Georgia, serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--mono);
+    background: var(--bg-0);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(0, 255, 145, 0.08), transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(0, 212, 255, 0.05), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  /* Grid pattern overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      linear-gradient(rgba(0, 255, 145, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 145, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scanline effect */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.06) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+
+  /* ==================== HEADER ==================== */
+  header {
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    background: rgba(10, 14, 12, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  .brand-dot {
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent-glow);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .brand-name { color: var(--text); }
+  .brand-slash { color: var(--accent); }
+  .brand-sub { color: var(--text-dim); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: color 0.2s;
+    position: relative;
+  }
+  nav a:hover {
+    color: var(--accent);
+  }
+  nav a::before {
+    content: '> ';
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  nav a:hover::before { opacity: 1; }
+
+  /* ==================== HERO ==================== */
+  .hero {
+    padding: 96px 0 80px;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-meta {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-meta::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(42px, 7vw, 92px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    font-variation-settings: "SOFT" 50, "opsz" 144;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .hero h1 .underline {
+    position: relative;
+    white-space: nowrap;
+  }
+  .hero h1 .underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0.05em;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+    box-shadow: 0 0 18px var(--accent-glow);
+  }
+  .hero-lead {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 720px;
+    line-height: 1.7;
+    font-family: var(--mono);
+    font-weight: 400;
+  }
+  .hero-stats {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .stat {
+    background: var(--bg-1);
+    padding: 28px 24px;
+  }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+  }
+
+  /* ==================== ARCHITECTURE ==================== */
+  .section { padding: 96px 0; border-bottom: 1px solid var(--line); }
+
+  .section-header {
+    margin-bottom: 56px;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variation-settings: "SOFT" 30, "opsz" 144;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .section-lead {
+    font-size: 15px;
+    color: var(--text-dim);
+    max-width: 680px;
+    margin-top: 16px;
+    line-height: 1.8;
+  }
+
+  /* Architecture diagram */
+  .arch {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (min-width: 900px) {
+    .arch { grid-template-columns: 1fr 1.4fr; }
+  }
+  .arch-side {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    padding: 32px;
+  }
+  .arch-side h3 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .arch-side p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .flow-box {
+    border: 1px solid var(--line-strong);
+    padding: 20px;
+    background: var(--bg-2);
+    margin-bottom: 12px;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .flow-box:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(0, 255, 145, 0.12);
+  }
+  .flow-box-num {
+    position: absolute;
+    top: 12px; right: 16px;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    font-weight: 600;
+  }
+  .flow-box-title {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .flow-box-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .arrow {
+    color: var(--accent);
+    text-align: center;
+    font-size: 18px;
+    line-height: 1;
+    padding: 4px 0;
+    opacity: 0.6;
+  }
+
+  /* ==================== SKILLS GRID ==================== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 48px;
+  }
+  .skill-card {
+    background: var(--bg-1);
+    padding: 36px 32px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .skill-card:hover {
+    background: var(--bg-2);
+  }
+  .skill-card:hover::before {
+    transform: scaleX(1);
+  }
+  .skill-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 16px;
+  }
+  .skill-emoji {
+    font-size: 28px;
+    line-height: 1;
+  }
+  .skill-meta {
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .skill-name {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .skill-name .accent { color: var(--accent); }
+  .skill-tagline {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .skill-purpose {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .skill-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .skill-section-label {
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    font-family: var(--mono);
+    letter-spacing: 0.02em;
+  }
+  .tag-eq {
+    color: var(--accent);
+    border-color: var(--line-strong);
+  }
+  .skill-env {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cyan);
+    background: var(--bg-3);
+    padding: 8px 12px;
+    border-left: 2px solid var(--cyan);
+    margin-top: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .skill-list {
+    list-style: none;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .skill-list li {
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .skill-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 6px;
+  }
+
+  /* New deeper-content elements */
+  .skill-prompts {
+    background: var(--bg-2);
+    border-left: 2px solid var(--cyan);
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .skill-prompts .prompt-line {
+    color: var(--cyan);
+    display: block;
+    margin: 4px 0;
+  }
+  .skill-prompts .prompt-line::before {
+    content: '"';
+    color: var(--text-faint);
+  }
+  .skill-prompts .prompt-line::after {
+    content: '"';
+    color: var(--text-faint);
+  }
+  .skill-cases {
+    list-style: none;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .skill-cases li {
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--line);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .skill-cases li:last-child { border-bottom: none; }
+  .case-title {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .case-detail {
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ==================== NETAGENT INTEGRATION ==================== */
+  .integration-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 56px;
+  }
+  @media (min-width: 1024px) {
+    .integration-flow { grid-template-columns: repeat(3, 1fr); }
+  }
+  .step {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--display);
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 0.8;
+    opacity: 0.5;
+    letter-spacing: -0.04em;
+  }
+  .step-title {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 12px 0 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .step-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* Code blocks */
+  pre.code {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 24px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    overflow-x: auto;
+    margin: 24px 0;
+    position: relative;
+  }
+  pre.code::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent);
+    color: var(--bg-0);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .code .kw { color: var(--magenta); }
+  .code .str { color: var(--accent); }
+  .code .num { color: var(--cyan); }
+  .code .com { color: var(--text-faint); font-style: italic; }
+  .code .fn { color: var(--cyan); }
+
+  /* Workflow diagram */
+  .workflow-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 32px;
+  }
+  @media (max-width: 900px) {
+    .workflow-row { grid-template-columns: 1fr; }
+  }
+  .wf-step {
+    background: var(--bg-1);
+    padding: 24px 20px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .wf-step:hover { background: var(--bg-2); }
+  .wf-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .wf-name {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .wf-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* Confirmation pattern */
+  .confirm {
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.06), rgba(255, 77, 109, 0.06));
+    border: 1px solid var(--warn);
+    padding: 32px;
+    margin: 48px 0;
+    position: relative;
+  }
+  .confirm::before {
+    content: '!';
+    position: absolute;
+    top: -16px;
+    left: 24px;
+    background: var(--warn);
+    color: var(--bg-0);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .confirm-label {
+    font-size: 11px;
+    color: var(--warn);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .confirm-title {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .confirm-body {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .confirm-cmd {
+    display: inline-block;
+    font-family: var(--mono);
+    background: var(--bg-3);
+    color: var(--accent);
+    padding: 4px 10px;
+    margin: 0 4px;
+    border: 1px solid var(--line-strong);
+    font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    padding: 64px 0 32px;
+    border-top: 1px solid var(--line);
+    margin-top: 0;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  @media (min-width: 768px) {
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+  }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+  .footer-col p, .footer-col li {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { padding: 2px 0; }
+  .footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* Inline */
+  code.inline {
+    font-family: var(--mono);
+    background: var(--bg-3);
+    color: var(--accent);
+    padding: 2px 6px;
+    font-size: 0.92em;
+    border: 1px solid var(--line);
+  }
+
+  /* Anchor offset for sticky header */
+  section[id] { scroll-margin-top: 80px; }
+
+  /* Responsive tweaks */
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 56px 0; }
+    .section { padding: 64px 0; }
+    nav ul { gap: 16px; }
+    nav a { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">FÓRUM TELECOM</span>
+      <span class="brand-slash">/</span>
+      <span class="brand-sub">netagent skills</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#arquitetura">Arquitetura</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#integracao">Integração</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-meta">v1.0 · pacote dual-runtime · 8 skills</div>
+    <h1>
+      Skills profissionais de<br>
+      <em>operações de rede</em> para o<br>
+      <span class="underline">NetAgent.</span>
+    </h1>
+    <p class="hero-lead">
+      Oito skills cobrindo MikroTik, Cisco, Huawei NE, OLT FiberHome, OLT Huawei, Proxmox, Docker e Zabbix — escritas como playbooks executáveis para operação real de provedor. Mesmo arquivo roda no NetAgent (Claude Agent SDK) e no OpenClaw, sem mudar uma vírgula.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6.2k</div>
+        <div class="stat-label">Linhas markdown</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Etapas obrigatórias</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Runtimes suportados</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============== ARQUITETURA ============== -->
+<section class="section" id="arquitetura">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">01 / ARQUITETURA</div>
+        <h2 class="section-title">O que é uma <em>skill</em>, mecanicamente</h2>
+        <p class="section-lead">
+          Uma skill é um arquivo <code class="inline">SKILL.md</code> que vira contexto para o LLM. O agente lê o frontmatter, decide se a skill é relevante para o pedido do usuário, carrega o conteúdo e segue o playbook. Sem código compilado, sem black-box.
+        </p>
+      </div>
+    </div>
+
+    <div class="arch">
+      <div class="arch-side">
+        <h3>Anatomia de um SKILL.md</h3>
+        <p>O frontmatter YAML define <code class="inline">name</code> e <code class="inline">description</code> — densos em palavras-gatilho. Quanto melhor a description, melhor o agente decide quando ativar.</p>
+        <p>O <code class="inline">metadata.openclaw</code> declara binários e env vars exigidos. O OpenClaw usa para gating; o Claude SDK ignora silenciosamente.</p>
+        <p>O corpo em markdown é o playbook — instruções claras, comandos críticos, regras de segurança, templates. O agente lê isso e executa.</p>
+      </div>
+      <div class="arch-side">
+        <pre class="code" data-lang="SKILL.md"><span class="com">---</span>
+<span class="kw">name</span>: mikrotik-ops
+<span class="kw">description</span>: Senior MikroTik RouterOS engineer.
+  Use when user asks to diagnose, configure, audit
+  MikroTik devices. Triggers: BGP, hotspot, /interface,
+  CCR, CRS, RouterOS 6 vs 7, queue tree...
+<span class="kw">metadata</span>: { <span class="str">"openclaw"</span>: { <span class="str">"emoji"</span>: <span class="str">"🛜"</span>,
+  <span class="str">"requires"</span>: { <span class="str">"anyBins"</span>: [<span class="str">"ssh"</span>],
+  <span class="str">"env"</span>: [<span class="str">"MIKROTIK_HOST"</span>] } }
+<span class="com">---</span>
+
+<span class="com"># MikroTik Operations</span>
+
+Senior network engineer for MikroTik RouterOS.
+Speak Brazilian Portuguese. Never run destructive
+commands without explicit confirmation.
+
+<span class="com">## Mandatory workflow</span>
+<span class="num">1.</span> Identify · <span class="num">2.</span> Snapshot · <span class="num">3.</span> Apply
+<span class="num">4.</span> Validate · <span class="num">5.</span> Report</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WORKFLOW ============== -->
+<section class="section" id="workflow">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">02 / WORKFLOW</div>
+        <h2 class="section-title">O ciclo de <em>5 etapas</em> obrigatórias</h2>
+        <p class="section-lead">
+          Toda skill obriga o agente a seguir o mesmo ritual antes de mexer em produção. Não é decoração — é o que separa um agente que ajuda de um agente que derruba a rede do cliente.
+        </p>
+      </div>
+    </div>
+
+    <div class="workflow-row">
+      <div class="wf-step">
+        <div class="wf-num">01</div>
+        <div class="wf-name">Identify</div>
+        <div class="wf-desc">Versão do firmware, hostname, contexto do equipamento.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">02</div>
+        <div class="wf-name">Snapshot</div>
+        <div class="wf-desc">Backup ou export antes de qualquer mudança.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">03</div>
+        <div class="wf-name">Apply</div>
+        <div class="wf-desc">Aplica com safe-mode, commit-confirmed ou scheduler de rollback.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">04</div>
+        <div class="wf-name">Validate</div>
+        <div class="wf-desc">Confere que a mudança fez efeito esperado.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">05</div>
+        <div class="wf-name">Report</div>
+        <div class="wf-desc">Relatório markdown estruturado do que foi feito.</div>
+      </div>
+    </div>
+
+    <div class="confirm">
+      <div class="confirm-label">SAFETY · CONFIRMATION PATTERN</div>
+      <div class="confirm-title">Ops destrutivas exigem confirmação literal</div>
+      <p class="confirm-body">
+        Para <strong>qualquer</strong> operação que pode quebrar produção (apagar regra, derrubar peer BGP, deletar VM, dar reload, factory reset), o agente <strong>recusa</strong> até receber do usuário a frase exata
+        <span class="confirm-cmd">CONFIRMO &lt;comando&gt;</span> — paráfrases como "ok pode mandar" ou "manda ver" são rejeitadas. Isso é instrução fixa em todas as 8 skills.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SKILLS ============== -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">03 / CATÁLOGO</div>
+        <h2 class="section-title">As <em>8 skills</em> do pacote</h2>
+        <p class="section-lead">
+          Cada uma é especializada num domínio. O NetAgent ativa a skill certa baseado no que o usuário pede no WhatsApp via Evolution API.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+
+      <!-- MikroTik -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🛜</div>
+          <div class="skill-meta">SKILL #01 · NETWORK</div>
+        </div>
+        <div class="skill-name">mikrotik<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"Engenheiro sênior de RouterOS, 24/7."</div>
+        <div class="skill-purpose">
+          Opera RouterOS via SSH ou REST API. Conhece a fundo as diferenças entre RouterOS 6 e 7 (BGP, IPv6, container, ROSE). Aciona modo seguro para mudanças remotas usando <code class="inline">/system scheduler</code> com auto-rollback. Domina os 3 papéis típicos do MikroTik em provedor: borda BGP, BRAS PPPoE e router de cliente.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">BRAS PPPoE com queue tree</span>
+              <span class="case-detail">Mangle marca conexão por interface dinâmica → queue tree HTB aplica plano de banda. Nunca queue simples em concentrador grande — vira SMP-bound.</span>
+            </li>
+            <li>
+              <span class="case-title">CGNAT NAT44 com pool</span>
+              <span class="case-detail">Provedor sem IPv4 público suficiente. Pool de saída via <code class="inline">action=src-nat to-address-list</code> + log mínimo de 12 meses (compliance).</span>
+            </li>
+            <li>
+              <span class="case-title">Borda BGP múltiplos upstreams</span>
+              <span class="case-detail">RouterOS 7 mudou tudo: <code class="inline">/routing/bgp/connection</code>, templates, filter rules separados. Diagnóstico de queda começa em session + log topics=bgp.</span>
+            </li>
+            <li>
+              <span class="case-title">Failover ECMP recursive</span>
+              <span class="case-detail">Em v7, <code class="inline">target-scope</code> recursivo + check-gateway. Em v6, PCC mangle. Migrar pra v7 simplifica drasticamente.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">BGP do upstream Vivo caiu</span>
+            <span class="prompt-line">Cliente X não navega, dá uma olhada</span>
+            <span class="prompt-line">Sobe a banda do cliente Y pra 500M</span>
+            <span class="prompt-line">Lista quem tá logado no concentrador</span>
+            <span class="prompt-line">Bloqueia a porta 25 saída do IP 10.0.0.5</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Equipamentos</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">CCR2004</span>
+            <span class="tag tag-eq">CCR2216</span>
+            <span class="tag tag-eq">CRS</span>
+            <span class="tag tag-eq">hAP</span>
+            <span class="tag">RouterOS 6</span>
+            <span class="tag">RouterOS 7</span>
+            <span class="tag">REST API</span>
+            <span class="tag">CAPsMAN</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$MIKROTIK_HOST · $MIKROTIK_USER · $MIKROTIK_PORT · $MIKROTIK_API_PASS</div>
+        </div>
+      </div>
+
+      <!-- Cisco -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🌐</div>
+          <div class="skill-meta">SKILL #02 · NETWORK</div>
+        </div>
+        <div class="skill-name">cisco<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"Detecta o OS, fala a sintaxe certa."</div>
+        <div class="skill-purpose">
+          Roteadores e switches Cisco em qualquer sabor. Detecta automaticamente IOS / IOS-XE / IOS-XR / NX-OS via <code class="inline">show version</code> e ajusta a sintaxe. Cada plataforma tem seu mecanismo de safety: IOS-XR usa <code class="inline">commit confirmed 5</code>, NX-OS usa <code class="inline">checkpoint</code>, IOS clássico precisa de <code class="inline">reload in 10</code> reservation.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">Borda BGP full-table múltiplos upstreams</span>
+              <span class="case-detail">ASR9K recebendo ~950k IPv4 + ~200k IPv6. <code class="inline">maximum-prefix 1500000 90 restart 5</code> obrigatório. Diagnóstico padrão: bgp summary + received-routes count + platform memory.</span>
+            </li>
+            <li>
+              <span class="case-title">CGNAT em IOS-XR (CGv6)</span>
+              <span class="case-detail">Line-card dedicada (NCS5500 + ServiceInfra). Pool, timers TCP 120s, export Netflow v9 para retenção legal de 12 meses.</span>
+            </li>
+            <li>
+              <span class="case-title">MPLS L3VPN para clientes corporativos</span>
+              <span class="case-detail">VRF + RD + RT + BGP vpnv4. Diagnóstico de cliente: bgp vpnv4 vrf, mpls forwarding-table vrf, ip cef vrf prefix.</span>
+            </li>
+            <li>
+              <span class="case-title">Anti-DDoS via blackhole BGP</span>
+              <span class="case-detail">Community do upstream injeta nullroute em /32 alvo. Padrão temporário — manter permanente vira buraco de alcance.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">Peer X dropou, vê o motivo</span>
+            <span class="prompt-line">Latência alta no link Y, investiga</span>
+            <span class="prompt-line">Anuncia nullroute pro IP Z (atacado)</span>
+            <span class="prompt-line">Backup da config pro bootflash</span>
+            <span class="prompt-line">Cliente VPN X sem conectar</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Plataformas</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">ASR9K</span>
+            <span class="tag tag-eq">ASR1K</span>
+            <span class="tag tag-eq">ISR4K</span>
+            <span class="tag tag-eq">Catalyst 9K</span>
+            <span class="tag tag-eq">Nexus 9K</span>
+            <span class="tag">IOS-XR</span>
+            <span class="tag">NX-OS</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$CISCO_HOST · $CISCO_USER · $CISCO_PORT</div>
+        </div>
+      </div>
+
+      <!-- Huawei NE -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🔴</div>
+          <div class="skill-meta">SKILL #03 · NETWORK</div>
+        </div>
+        <div class="skill-name">huawei-ne<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"VRP V5 ou V8 — o agente sabe a diferença."</div>
+        <div class="skill-purpose">
+          Roteadores de borda Huawei NetEngine. VRP V8 (NE40E moderno, NE8000) usa <code class="inline">commit</code> — V5 (NE40E classic, ME60) aplica direto. O agente detecta e ajusta. Conhece <code class="inline">display</code> em vez de <code class="inline">show</code>, <code class="inline">undo</code> em vez de <code class="inline">no</code>, e o ritual completo de BNG (aaa scheme + domain + virtual-template + IP pool).
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">BNG PPPoE de larga escala</span>
+              <span class="case-detail">AAA scheme com RADIUS, domain por ISP/marca, virtual-template, IP pool com network /16 (CGNAT). Diagnóstico de cliente: <code class="inline">display access-user username</code> + radius-server statistics.</span>
+            </li>
+            <li>
+              <span class="case-title">CGNAT em placa CGN dedicada</span>
+              <span class="case-detail">Service-location apontando para slot com card CGN. NAT instance + address-group + outbound rule. Export syslog/Netflow obrigatório.</span>
+            </li>
+            <li>
+              <span class="case-title">Peering BGP com BFD</span>
+              <span class="case-detail">BFD acelera detecção de falha (300ms vs 90s do hold-timer). Comum em peering de upstream crítico.</span>
+            </li>
+            <li>
+              <span class="case-title">L3VPN para empresas</span>
+              <span class="case-detail">VPN-instance + RD + vpn-target + binding em subinterface dot1q. Sintaxe diferente do Cisco mas conceito idêntico.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">Cliente PPPoE não autentica</span>
+            <span class="prompt-line">Quantos assinantes online agora?</span>
+            <span class="prompt-line">BGP do upstream Y caiu</span>
+            <span class="prompt-line">Cliente Z conecta mas sem IP</span>
+            <span class="prompt-line">Backup da config pro FTP</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Plataformas</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">NE40E</span>
+            <span class="tag tag-eq">NE8000</span>
+            <span class="tag tag-eq">NE20E</span>
+            <span class="tag tag-eq">ME60</span>
+            <span class="tag">VRP V5</span>
+            <span class="tag">VRP V8</span>
+            <span class="tag">BNG</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$HUAWEI_HOST · $HUAWEI_USER · $HUAWEI_PORT</div>
+        </div>
+      </div>
+
+      <!-- FiberHome -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🟢</div>
+          <div class="skill-meta">SKILL #04 · FTTx</div>
+        </div>
+        <div class="skill-name">olt-fiberhome<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"CLI por diretórios — o agente navega como filesystem."</div>
+        <div class="skill-purpose">
+          OLTs FiberHome têm CLI peculiar — você navega entre <code class="inline">cd device</code>, <code class="inline">cd vlan</code>, <code class="inline">cd gponline</code>, e o prompt muda. Comando válido em um diretório não funciona em outro. O agente sempre confere o prompt antes de executar. Domina autoprovision via <code class="inline">show discovery</code> + whitelist.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">Provisionamento massivo de ONUs</span>
+              <span class="case-detail">ONU física conecta → aparece em <code class="inline">show discovery</code> → whitelist com SN → service-port com VLAN PPPoE. Integração TL1 na porta 3334 para sistemas de gestão.</span>
+            </li>
+            <li>
+              <span class="case-title">Sinal ótico (80% dos chamados)</span>
+              <span class="case-detail">OLT RX e ONU RX ideais entre -8 e -27 dBm. <code class="inline">show optic_module</code> + interpretação dB. Distância confronta com cadastro (suspeita de fraude se diverge).</span>
+            </li>
+            <li>
+              <span class="case-title">3rd-party ONUs (BDCOM, Raisecom, etc.)</span>
+              <span class="case-detail">Compatibilidade depende do firmware: RP0700 restritivo, RP1000+ amplo. Diagnóstico: SN aparece em discovery? Se sim → vendor não suportado pela placa.</span>
+            </li>
+            <li>
+              <span class="case-title">Suspensão por inadimplência</span>
+              <span class="case-detail">Não delete a ONU — perde histórico. Move pra VLAN de "suspensos" via <code class="inline">service modify</code>. Reativação reverte VLAN.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">Cliente da rua X sem net</span>
+            <span class="prompt-line">Provisiona ONU SN ABC123 do cliente Y</span>
+            <span class="prompt-line">Sinal da ONU do cliente Z</span>
+            <span class="prompt-line">Lista ONUs offline da PON 1/2</span>
+            <span class="prompt-line">Suspende cliente W (inadimplente)</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Plataformas</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">AN5516-04</span>
+            <span class="tag tag-eq">AN5516-06</span>
+            <span class="tag tag-eq">AN5116</span>
+            <span class="tag tag-eq">AN6000</span>
+            <span class="tag">RP1000+</span>
+            <span class="tag">TL1</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$FH_OLT_HOST · $FH_OLT_USER · $FH_OLT_PASS</div>
+        </div>
+      </div>
+
+      <!-- Huawei OLT -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🟠</div>
+          <div class="skill-meta">SKILL #05 · FTTx</div>
+        </div>
+        <div class="skill-name">olt-huawei<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"VRP-style com modo enable, config, interface."</div>
+        <div class="skill-purpose">
+          OLTs Huawei (MA5800, MA5680T, EA5800) usam CLI VRP-derivado: user view, enable view, config view, e contextos de placa GPON. Provisionamento de ONT segue o padrão F/S/P (frame/slot/port). O agente conhece line-profile + srv-profile + service-port + traffic-table como combinação que define o serviço.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">Autoprovision via auto-find</span>
+              <span class="case-detail">ONT aparece em <code class="inline">display ont autofind</code> → vincula a profiles → cria service-port com tag-transform. Provedores grandes têm dezenas de profiles para diferentes planos.</span>
+            </li>
+            <li>
+              <span class="case-title">Tag-transform: VLAN cliente vs core</span>
+              <span class="case-detail">transparent / translate / add (Q-in-Q) / default. Q-in-Q comum quando OLT só transporta L2 e BNG termina PPPoE.</span>
+            </li>
+            <li>
+              <span class="case-title">Localização de cliente por SN</span>
+              <span class="case-detail"><code class="inline">display ont info by-sn</code> retorna F/S/P + ID. Depois <code class="inline">display ont event</code> dá últimos eventos (LOS, dying-gasp, etc.).</span>
+            </li>
+            <li>
+              <span class="case-title">Diagnóstico de sinal ótico</span>
+              <span class="case-detail">RX/TX em <code class="inline">display ont optical-info</code>. Run-state online/offline/failing. Distance em metros (validar com cadastro).</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">ONT SN HWTC123 caiu</span>
+            <span class="prompt-line">Provisiona nova ONT do plano 600M</span>
+            <span class="prompt-line">Move cliente X pra VLAN suspensos</span>
+            <span class="prompt-line">Sinal de fibra do cliente Y</span>
+            <span class="prompt-line">Quantas ONTs offline na PON 1/2</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Plataformas</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">MA5800-X2</span>
+            <span class="tag tag-eq">MA5800-X7</span>
+            <span class="tag tag-eq">MA5800-X15</span>
+            <span class="tag tag-eq">MA5680T</span>
+            <span class="tag tag-eq">MA5608T</span>
+            <span class="tag tag-eq">EA5800</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$HW_OLT_HOST · $HW_OLT_USER · $HW_OLT_PASS</div>
+        </div>
+      </div>
+
+      <!-- Proxmox -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🖥️</div>
+          <div class="skill-meta">SKILL #06 · INFRA</div>
+        </div>
+        <div class="skill-name">proxmox<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"qm, pct, pvecm, pvesh, pvesm — domínio completo."</div>
+        <div class="skill-purpose">
+          Cluster Proxmox VE: VMs (KVM via <code class="inline">qm</code>), CTs (LXC via <code class="inline">pct</code>), cluster (<code class="inline">pvecm</code>), storage (<code class="inline">pvesm</code>), API (<code class="inline">pvesh</code>). Snapshot antes de qualquer mudança — sempre. Conhece arquitetura típica de provedor: 3 nodes, redes redundantes para corosync, PBS dedicado para retention longa.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">Hospedagem de stack interna</span>
+              <span class="case-detail">Sistema de gestão (IXC, Hubsoft, MK-Auth), portal cliente, RADIUS, looking glass, Zabbix — tudo em VMs/CTs num cluster 3-node com Ceph ou ZFS replicado.</span>
+            </li>
+            <li>
+              <span class="case-title">Cluster 3-node com HA real</span>
+              <span class="case-detail">--link0 + --link1 (redes redundantes para corosync) é OBRIGATÓRIO. Sem isso, qualquer hiccup de rede causa fence indevido.</span>
+            </li>
+            <li>
+              <span class="case-title">Replicação ZFS (alternativa Ceph)</span>
+              <span class="case-detail">Pra clusters 2-3 nodes sem stack Ceph completa. <code class="inline">pvesr</code> a cada 15min, failover manual em segundos.</span>
+            </li>
+            <li>
+              <span class="case-title">Backup com PBS + dedup</span>
+              <span class="case-detail">PBS faz deduplicação real. Backup full diário ocupa pouco espaço incremental. Retention 30+ dias vira simples.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">Como tá o cluster?</span>
+            <span class="prompt-line">VM do IXC tá lenta, investiga</span>
+            <span class="prompt-line">Restaura backup de ontem da VM 105</span>
+            <span class="prompt-line">Snapshot antes do upgrade</span>
+            <span class="prompt-line">Quanto storage livre tem?</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Cobertura</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">VM (KVM)</span>
+            <span class="tag tag-eq">CT (LXC)</span>
+            <span class="tag tag-eq">Cluster</span>
+            <span class="tag">ZFS</span>
+            <span class="tag">Ceph</span>
+            <span class="tag">PBS</span>
+            <span class="tag">HA</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$PVE_HOST · $PVE_TOKEN (API token)</div>
+        </div>
+      </div>
+
+      <!-- Docker -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">🐳</div>
+          <div class="skill-meta">SKILL #07 · INFRA</div>
+        </div>
+        <div class="skill-name">docker<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"Containers, Compose, Swarm, Traefik."</div>
+        <div class="skill-purpose">
+          Operações de container em qualquer contexto: socket local, SSH remoto, Coolify, Portainer, Komodo. Sempre prefere <code class="inline">docker compose</code> declarativo a <code class="inline">docker run</code> ad-hoc. Healthchecks obrigatórios — container sem healthcheck é container que parece up mas tá quebrado.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">Stack de plataforma interna</span>
+              <span class="case-detail">Portal cliente, looking glass, monitoramento, automação, agentes de IA — tudo em containers com Traefik + Let's Encrypt + Cloudflare Tunnel.</span>
+            </li>
+            <li>
+              <span class="case-title">Pattern Traefik com HTTPS automático</span>
+              <span class="case-detail">Labels declarativas: rule, certresolver, healthcheck path/interval. Cert gerado automaticamente, renovado em background.</span>
+            </li>
+            <li>
+              <span class="case-title">Diagnóstico "container ON mas não responde"</span>
+              <span class="case-detail">docker ps + logs --tail + exec ps aux + stats + network inspect + port. Causas comuns: healthcheck falhando, OOM kill, volume com permissão errada.</span>
+            </li>
+            <li>
+              <span class="case-title">Backup de volumes nomeados</span>
+              <span class="case-detail">tarball via container alpine + cp out + restic/borg para dedup ofsite. Combinar com snapshot Proxmox da VM toda.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">Container X caiu, verifica</span>
+            <span class="prompt-line">Deploy da nova versão do portal</span>
+            <span class="prompt-line">Backup do banco postgres</span>
+            <span class="prompt-line">Reinicia stack X</span>
+            <span class="prompt-line">Quem tá comendo CPU agora?</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Contextos</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">Single-host</span>
+            <span class="tag tag-eq">Swarm</span>
+            <span class="tag">Coolify</span>
+            <span class="tag">Portainer</span>
+            <span class="tag">Traefik</span>
+            <span class="tag">Compose</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$DOCKER_HOST (local socket ou ssh://user@host)</div>
+        </div>
+      </div>
+
+      <!-- Zabbix -->
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-emoji">📊</div>
+          <div class="skill-meta">SKILL #08 · OBSERVABILITY</div>
+        </div>
+        <div class="skill-name">zabbix<span class="accent">-ops</span></div>
+        <div class="skill-tagline">"API JSON-RPC com rate limit respeitado."</div>
+        <div class="skill-purpose">
+          Monitoramento Zabbix 6.x e 7.x via API JSON-RPC. <strong>Especialidade: criação de templates em massa respeitando os limites práticos da API</strong> — PHP-FPM workers, max_input_vars, locks de Postgres. Domina batches sequenciais, retry exponencial, e quando usar <code class="inline">configuration.import</code> vs <code class="inline">item.create</code> em loop.
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Casos típicos no provedor</div>
+          <ul class="skill-cases">
+            <li>
+              <span class="case-title">Criar template com 200 items + 50 triggers</span>
+              <span class="case-detail">Items em batches de 50 (até 50/call), triggers em batches de 30, throttle de 200ms entre chamadas, retry exponencial em -32500 e -32603. Sem isso → frontend trava.</span>
+            </li>
+            <li>
+              <span class="case-title">Vincular template a 200 hosts</span>
+              <span class="case-detail">Use <code class="inline">template.massadd</code> (transacional, até 500 hostids/call) ao invés de loop de host.update. 1 chamada vs 200 chamadas.</span>
+            </li>
+            <li>
+              <span class="case-title">Discovery automático de equipamentos</span>
+              <span class="case-detail">Range de IP gerência → drule.create → action de auto-add com template baseado em sysObjectID SNMP. Network novo entra sozinho no monitoramento.</span>
+            </li>
+            <li>
+              <span class="case-title">Webhook de alerta → WhatsApp</span>
+              <span class="case-detail">Mediatype JS chamando Evolution API. Severity ≥ High dispara mensagem no grupo NOC. Acknowledge fecha o problema.</span>
+            </li>
+            <li>
+              <span class="case-title">Replicação de templates entre instâncias</span>
+              <span class="case-detail">configuration.export YAML na origem + configuration.import no destino. Ideal para replicar customizações entre Zabbix de homolog/prod.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Prompts típicos no WhatsApp</div>
+          <div class="skill-prompts">
+            <span class="prompt-line">Quem tá com problema agora?</span>
+            <span class="prompt-line">Cria template MikroTik com 50 itens</span>
+            <span class="prompt-line">Importa esse XML do template Huawei</span>
+            <span class="prompt-line">Vincula template X a esses 200 hosts</span>
+            <span class="prompt-line">Silencia alerta da OLT durante manutenção</span>
+            <span class="prompt-line">Tráfego do uplink no último dia</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Limites respeitados</div>
+          <div class="skill-tags">
+            <span class="tag tag-eq">item.create ≤50</span>
+            <span class="tag tag-eq">trigger.create ≤30</span>
+            <span class="tag tag-eq">host.create ≤20</span>
+            <span class="tag tag-eq">throttle 200ms</span>
+            <span class="tag">paralelismo 3-5</span>
+          </div>
+        </div>
+        <div class="skill-section">
+          <div class="skill-section-label">Env vars</div>
+          <div class="skill-env">$ZABBIX_URL · $ZABBIX_TOKEN</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== INTEGRATION ============== -->
+<section class="section" id="integracao">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">04 / INTEGRAÇÃO</div>
+        <h2 class="section-title">Como tudo isso roda <em>no NetAgent</em></h2>
+        <p class="section-lead">
+          O NetAgent recebe mensagem do WhatsApp via Evolution API, decide qual agente especializado deve responder (Network ou Infra), e o agente carrega as skills relevantes do diretório montado.
+        </p>
+      </div>
+    </div>
+
+    <div class="integration-flow">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">User → WhatsApp</div>
+        <div class="step-body">
+          Usuário manda mensagem tipo <em>"o BGP do MikroTik de borda caiu, dá uma olhada"</em>. Evolution API entrega o webhook ao FastAPI do NetAgent.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Dispatcher → Agent</div>
+        <div class="step-body">
+          O Dispatcher classifica a intenção (network) e roteia para o NetworkAgent. O agente é instanciado com o diretório de skills montado em <code class="inline">/app/skills</code>.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Agent → Skill</div>
+        <div class="step-body">
+          O Claude Agent SDK lê o frontmatter de cada SKILL.md, decide que <code class="inline">mikrotik-ops</code> é a skill certa, carrega o playbook e executa o workflow de 5 etapas via SSH/MCP.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px;">
+      <h3 style="font-family: var(--display); font-size: 28px; font-weight: 400; margin-bottom: 24px;">
+        <em style="color: var(--accent); font-style: italic;">Código de exemplo</em> · NetworkAgent
+      </h3>
+      <pre class="code" data-lang="python"><span class="com"># netagent/agents/network_agent.py</span>
+<span class="kw">from</span> claude_agent_sdk <span class="kw">import</span> query, ClaudeAgentOptions
+
+<span class="kw">class</span> <span class="fn">NetworkAgent</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self):
+        self.options = ClaudeAgentOptions(
+            system_prompt=<span class="str">"Você é o NetworkAgent da Fórum Telecom."</span>,
+            setting_sources=[<span class="str">"project"</span>],          <span class="com"># carrega skills do dir</span>
+            cwd=<span class="str">"/app/skills"</span>,                      <span class="com"># monta forum-telecom-skills aqui</span>
+            allowed_tools=[<span class="str">"Bash"</span>, <span class="str">"Read"</span>, <span class="str">"WebSearch"</span>],
+            permission_mode=<span class="str">"default"</span>,             <span class="com"># exige confirmação humana</span>
+        )
+
+    <span class="kw">async def</span> <span class="fn">handle</span>(self, user_message: str):
+        <span class="kw">async for</span> msg <span class="kw">in</span> query(prompt=user_message, options=self.options):
+            <span class="kw">yield</span> msg</pre>
+
+      <h3 style="font-family: var(--display); font-size: 28px; font-weight: 400; margin: 56px 0 24px;">
+        <em style="color: var(--accent); font-style: italic;">Docker Compose</em> · skills como volume
+      </h3>
+      <pre class="code" data-lang="docker-compose.yml"><span class="kw">services</span>:
+  <span class="kw">network-agent</span>:
+    image: forumtelecom/netagent-network:latest
+    <span class="kw">volumes</span>:
+      - ./forum-telecom-skills/skills:/app/skills:ro
+    <span class="kw">environment</span>:
+      - <span class="num">MIKROTIK_HOST</span>=${MIKROTIK_HOST}
+      - <span class="num">CISCO_HOST</span>=${CISCO_HOST}
+      - <span class="num">HUAWEI_HOST</span>=${HUAWEI_HOST}
+      - <span class="num">FH_OLT_HOST</span>=${FH_OLT_HOST}
+      - <span class="num">HW_OLT_HOST</span>=${HW_OLT_HOST}
+      - <span class="num">ANTHROPIC_API_KEY</span>=${ANTHROPIC_API_KEY}
+    <span class="kw">depends_on</span>:
+      - dispatcher
+      - evolution-api</pre>
+    </div>
+
+    <div class="confirm" style="border-color: var(--accent); background: linear-gradient(135deg, rgba(0, 255, 145, 0.06), rgba(0, 212, 255, 0.06));">
+      <div class="confirm-label" style="color: var(--accent);">PRO TIP · FONTE ÚNICA DE VERDADE</div>
+      <div class="confirm-title">Mantenha as skills num diretório versionado</div>
+      <p class="confirm-body">
+        Tanto o NetAgent (Claude Agent SDK) quanto o OpenClaw consomem os mesmos arquivos. Mantenha um único diretório como fonte da verdade e os dois runtimes apontam pra ele. Toda alteração de comando ou novo template fica num lugar só — sem divergência entre ambientes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Fórum Telecom</h4>
+        <p>
+          Educação e ferramentas para profissionais de redes.<br>
+          Cursos MikroTik, BGP, FortiGate, FTTx e infraestrutura ISP.
+        </p>
+        <p style="margin-top: 16px; color: var(--text-faint); font-size: 12px;">
+          Pacote criado por Cristiano Figueiredo<br>
+          @cristianofigueiredoo · forumtelecom.com.br
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Skills</h4>
+        <ul>
+          <li>mikrotik-ops</li>
+          <li>cisco-ops</li>
+          <li>huawei-ne-ops</li>
+          <li>olt-fiberhome-ops</li>
+          <li>olt-huawei-ops</li>
+          <li>proxmox-ops</li>
+          <li>docker-ops</li>
+          <li>zabbix-ops</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Domínios cobertos</h4>
+        <ul>
+          <li>Borda BGP</li>
+          <li>BRAS / BNG PPPoE</li>
+          <li>CGNAT NAT44</li>
+          <li>FTTx GPON</li>
+          <li>Cluster virtualização</li>
+          <li>Containers + reverse proxy</li>
+          <li>Monitoramento em escala</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Fórum Telecom · MIT License</span>
+      <span>v1.0 · netagent skills package</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for anchors (already CSS), and a subtle reveal
+  document.querySelectorAll('.skill-card, .step, .wf-step, .stat').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.6s ${i * 0.04}s, transform 0.6s ${i * 0.04}s`;
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.skill-card, .step, .wf-step, .stat').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

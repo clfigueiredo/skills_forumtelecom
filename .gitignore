@@ -1,0 +1,46 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Env / secrets — NUNCA commitar
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+credentials/
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Logs
+*.log
+logs/
+
+# Python (caso scripts auxiliares)
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# Node (caso experimentos)
+node_modules/
+
+# Test outputs
+test-output/
+tmp/
