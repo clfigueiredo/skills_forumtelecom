@@ -151,6 +151,816 @@
   }
   nav a:hover::before { opacity: 1; }
 
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: all 0.2s;
+  }
+  .github-btn:hover {
+    background: var(--accent);
+    color: var(--bg-0);
+    border-color: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+  }
+  .github-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* Mid-page repo CTA */
+  .repo-cta {
+    background: linear-gradient(135deg, rgba(0, 255, 145, 0.08), rgba(0, 212, 255, 0.06));
+    border: 1px solid var(--accent);
+    padding: 40px 36px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .repo-cta { grid-template-columns: 1fr auto; }
+  }
+  .repo-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--cyan), var(--accent));
+  }
+  .repo-cta-label {
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .repo-cta-title {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-style: italic;
+    line-height: 1.2;
+  }
+  .repo-cta-body {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 620px;
+  }
+  .repo-cta-url {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--bg-2);
+    padding: 6px 12px;
+    border: 1px solid var(--line-strong);
+    margin-top: 14px;
+    word-break: break-all;
+  }
+  .repo-cta-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--accent);
+    color: var(--bg-0);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .repo-cta-cta:hover {
+    background: var(--text);
+    box-shadow: 0 0 24px var(--accent-glow);
+    transform: translateY(-2px);
+  }
+  .repo-cta-cta svg { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ==================== USAGE PROMPT ==================== */
+  .usage-callout {
+    border: 1px solid var(--cyan);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(0, 255, 145, 0.04));
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .usage-callout::before {
+    content: '⚡';
+    position: absolute;
+    top: -16px;
+    left: 24px;
+    background: var(--cyan);
+    color: var(--bg-0);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+  }
+  .usage-callout-label {
+    font-size: 11px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .usage-callout-title {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 16px;
+    font-style: italic;
+    line-height: 1.3;
+  }
+  .usage-callout-body {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .usage-callout-body strong { color: var(--text); }
+  .usage-tools {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0 4px;
+  }
+  .usage-tool-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--line-strong);
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .usage-tool-tag::before {
+    content: '▸';
+    color: var(--accent);
+  }
+
+  .prompt-block {
+    position: relative;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    margin-top: 32px;
+  }
+  .prompt-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-3);
+  }
+  .prompt-block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .prompt-block-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--bg-0);
+    border: 1px solid var(--line-strong);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover {
+    background: var(--accent);
+    color: var(--bg-0);
+    border-color: var(--accent);
+  }
+  .copy-btn.copied {
+    background: var(--accent);
+    color: var(--bg-0);
+  }
+  .copy-btn svg { width: 12px; height: 12px; fill: currentColor; }
+  .prompt-block-body {
+    padding: 24px 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  .prompt-block-body::selection { background: var(--accent); color: var(--bg-0); }
+
+  /* ==================== ANATOMIA DA SKILL ==================== */
+  .anatomy-intro {
+    margin: 64px 0 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .anatomy-intro-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .anatomy-intro h3 {
+    font-family: var(--display);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    font-variation-settings: "SOFT" 30, "opsz" 144;
+  }
+  .anatomy-intro h3 em { font-style: italic; color: var(--accent); }
+  .anatomy-intro p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 720px;
+  }
+
+  .anatomy-step {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .anatomy-step { grid-template-columns: 280px 1fr; gap: 40px; }
+  }
+  .anatomy-step-meta { position: sticky; top: 96px; }
+  .anatomy-step-num {
+    font-family: var(--display);
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+  .anatomy-step-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .anatomy-step-title {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+  .anatomy-step-why {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .anatomy-step-why strong { color: var(--accent); }
+
+  .anatomy-step-body p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .anatomy-step-body p strong { color: var(--text); }
+
+  .anatomy-code {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text);
+    overflow-x: auto;
+    white-space: pre;
+    margin: 16px 0;
+    position: relative;
+  }
+  .anatomy-code::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent);
+    color: var(--bg-0);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .anatomy-code .yaml-key { color: var(--magenta); }
+  .anatomy-code .yaml-val { color: var(--accent); }
+  .anatomy-code .yaml-str { color: var(--cyan); }
+  .anatomy-code .yaml-comm { color: var(--text-faint); font-style: italic; }
+  .anatomy-code .md-h { color: var(--accent); font-weight: 700; }
+  .anatomy-code .md-bold { color: var(--text); font-weight: 700; }
+  .anatomy-code .rsc-cmd { color: var(--cyan); }
+  .anatomy-code .annot {
+    color: var(--warn);
+    font-style: italic;
+  }
+
+  /* Annotation callouts inside step body */
+  .anatomy-annots {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .anatomy-annot-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    padding: 10px 14px;
+    background: var(--bg-2);
+    border-left: 2px solid var(--accent);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .anatomy-annot-row .annot-key {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: lowercase;
+    letter-spacing: 0;
+  }
+  .anatomy-annot-row .annot-val {
+    color: var(--text-dim);
+  }
+  .anatomy-annot-row .annot-val code {
+    font-family: var(--mono);
+    color: var(--cyan);
+    background: var(--bg-3);
+    padding: 1px 5px;
+    border: 1px solid var(--line);
+    font-size: 11px;
+  }
+
+  /* Best practices grid */
+  .bp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 32px;
+  }
+  .bp-card {
+    background: var(--bg-1);
+    padding: 24px 22px;
+    transition: background 0.2s;
+  }
+  .bp-card:hover { background: var(--bg-2); }
+  .bp-card-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .bp-card-title {
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .bp-card-body {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .bp-card-body code {
+    font-family: var(--mono);
+    color: var(--accent);
+    background: var(--bg-3);
+    padding: 1px 5px;
+    border: 1px solid var(--line);
+    font-size: 11px;
+  }
+
+  /* ==================== CRIAR SKILL — DOIS CAMINHOS ==================== */
+  .create-paths {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  @media (min-width: 900px) {
+    .create-paths { grid-template-columns: 1fr 1fr; }
+  }
+  .create-path {
+    background: var(--bg-1);
+    border: 1px solid var(--line-strong);
+    padding: 28px 26px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .create-path::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  .create-path.path-b::before { background: var(--cyan); }
+  .create-path-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+  }
+  .create-path.path-b .create-path-tag { color: var(--cyan); }
+  .create-path-tag::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 50%;
+  }
+  .create-path-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .create-path-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .create-path-body strong { color: var(--text); }
+  .create-path-body code {
+    font-family: var(--mono);
+    color: var(--accent);
+    background: var(--bg-3);
+    padding: 1px 5px;
+    border: 1px solid var(--line);
+    font-size: 11px;
+  }
+  .create-path.path-b .create-path-body code { color: var(--cyan); }
+  .create-path-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--bg-3);
+    border: 1px solid var(--line-strong);
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transition: all 0.2s;
+    align-self: flex-start;
+    word-break: break-all;
+  }
+  .create-path.path-b .create-path-link { color: var(--cyan); }
+  .create-path-link:hover {
+    background: var(--accent);
+    color: var(--bg-0);
+    border-color: var(--accent);
+  }
+  .create-path.path-b .create-path-link:hover {
+    background: var(--cyan);
+    color: var(--bg-0);
+    border-color: var(--cyan);
+  }
+  .create-path-link svg { width: 12px; height: 12px; fill: currentColor; }
+
+  .install-hint {
+    margin-top: 32px;
+    padding: 18px 22px;
+    background: var(--bg-2);
+    border-left: 3px solid var(--accent);
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .install-hint strong { color: var(--accent); }
+  .install-hint code {
+    font-family: var(--mono);
+    color: var(--cyan);
+    background: var(--bg-3);
+    padding: 2px 6px;
+    border: 1px solid var(--line);
+    font-size: 12px;
+  }
+
+  /* ==================== ECOSSISTEMA / DOIS AGENTES ==================== */
+  .eco-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (min-width: 1024px) {
+    .eco-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .eco-card {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .eco-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+  }
+  .eco-card.eco-card-b::before { background: var(--cyan); }
+
+  .eco-card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .eco-card-emoji {
+    font-size: 28px;
+    line-height: 1;
+  }
+  .eco-card-title {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .eco-card-title .accent { color: var(--accent); }
+  .eco-card.eco-card-b .eco-card-title .accent { color: var(--cyan); }
+  .eco-card-tagline {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .eco-repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    background: var(--bg-3);
+    border: 1px solid var(--line-strong);
+    padding: 5px 10px;
+    margin-top: 8px;
+    word-break: break-all;
+    transition: all 0.2s;
+  }
+  .eco-card.eco-card-b .eco-repo-link { color: var(--cyan); }
+  .eco-repo-link:hover {
+    background: var(--accent);
+    color: var(--bg-0);
+    border-color: var(--accent);
+  }
+  .eco-card.eco-card-b .eco-repo-link:hover {
+    background: var(--cyan);
+    color: var(--bg-0);
+    border-color: var(--cyan);
+  }
+  .eco-repo-link svg { width: 12px; height: 12px; fill: currentColor; }
+
+  .eco-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .eco-row:last-of-type { border-bottom: none; }
+  .eco-row-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding-top: 2px;
+  }
+  .eco-row-value {
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .eco-row-value strong { color: var(--text); font-weight: 600; }
+  .eco-row-value code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--bg-3);
+    padding: 1px 5px;
+    border: 1px solid var(--line);
+  }
+  .eco-card.eco-card-b .eco-row-value code { color: var(--cyan); }
+
+  .eco-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .eco-chip {
+    font-size: 11px;
+    padding: 3px 9px;
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    font-family: var(--mono);
+  }
+  .eco-chip-primary {
+    color: var(--accent);
+    border-color: var(--line-strong);
+  }
+  .eco-card.eco-card-b .eco-chip-primary { color: var(--cyan); }
+
+  /* Mini ASCII-style architecture */
+  .eco-arch {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .eco-arch .arch-node {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .eco-card.eco-card-b .eco-arch .arch-node { color: var(--cyan); }
+  .eco-arch .arch-arrow { color: var(--text-faint); }
+  .eco-arch .arch-comment { color: var(--text-faint); font-style: italic; }
+
+  /* Plan blocks */
+  .plan-wrap {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 1024px) {
+    .plan-wrap { grid-template-columns: 1fr 1fr; }
+  }
+  .plan-card {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    padding: 28px;
+    border-left: 3px solid var(--accent);
+  }
+  .plan-card.plan-b { border-left-color: var(--cyan); }
+  .plan-card-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .plan-card.plan-b .plan-card-label { color: var(--cyan); }
+  .plan-card-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+  .plan-step {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  .plan-step:first-of-type { border-top: none; padding-top: 0; }
+  .plan-step-num {
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+  }
+  .plan-card.plan-b .plan-step-num { color: var(--cyan); }
+  .plan-step-body {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .plan-step-body strong { color: var(--text); font-weight: 600; }
+  .plan-step-body code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--bg-3);
+    padding: 1px 5px;
+    border: 1px solid var(--line);
+  }
+  .plan-card.plan-b .plan-step-body code { color: var(--cyan); }
+  .plan-risk {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 2px 8px;
+    border: 1px solid currentColor;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+  .risk-low { color: var(--accent); }
+  .risk-med { color: var(--warn); }
+  .risk-high { color: var(--danger); }
+
   /* ==================== HERO ==================== */
   .hero {
     padding: 96px 0 80px;
@@ -775,10 +1585,17 @@
     </div>
     <nav>
       <ul>
-        <li><a href="#arquitetura">Arquitetura</a></li>
-        <li><a href="#workflow">Workflow</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#integracao">Integração</a></li>
+        <li><a href="#repositorio">GitHub</a></li>
+        <li><a href="#implementacao">Implementar</a></li>
+        <li><a href="#ecossistema">Ecossistema</a></li>
+        <li><a href="#entender">Entender</a></li>
+        <li>
+          <a href="https://github.com/clfigueiredo/skills_forumtelecom" target="_blank" rel="noopener" class="github-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            GitHub
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -817,110 +1634,12 @@
   </div>
 </div>
 
-<!-- ============== ARQUITETURA ============== -->
-<section class="section" id="arquitetura">
-  <div class="container">
-    <div class="section-header">
-      <div>
-        <div class="section-num">01 / ARQUITETURA</div>
-        <h2 class="section-title">O que é uma <em>skill</em>, mecanicamente</h2>
-        <p class="section-lead">
-          Uma skill é um arquivo <code class="inline">SKILL.md</code> que vira contexto para o LLM. O agente lê o frontmatter, decide se a skill é relevante para o pedido do usuário, carrega o conteúdo e segue o playbook. Sem código compilado, sem black-box.
-        </p>
-      </div>
-    </div>
-
-    <div class="arch">
-      <div class="arch-side">
-        <h3>Anatomia de um SKILL.md</h3>
-        <p>O frontmatter YAML define <code class="inline">name</code> e <code class="inline">description</code> — densos em palavras-gatilho. Quanto melhor a description, melhor o agente decide quando ativar.</p>
-        <p>O <code class="inline">metadata.openclaw</code> declara binários e env vars exigidos. O OpenClaw usa para gating; o Claude SDK ignora silenciosamente.</p>
-        <p>O corpo em markdown é o playbook — instruções claras, comandos críticos, regras de segurança, templates. O agente lê isso e executa.</p>
-      </div>
-      <div class="arch-side">
-        <pre class="code" data-lang="SKILL.md"><span class="com">---</span>
-<span class="kw">name</span>: mikrotik-ops
-<span class="kw">description</span>: Senior MikroTik RouterOS engineer.
-  Use when user asks to diagnose, configure, audit
-  MikroTik devices. Triggers: BGP, hotspot, /interface,
-  CCR, CRS, RouterOS 6 vs 7, queue tree...
-<span class="kw">metadata</span>: { <span class="str">"openclaw"</span>: { <span class="str">"emoji"</span>: <span class="str">"🛜"</span>,
-  <span class="str">"requires"</span>: { <span class="str">"anyBins"</span>: [<span class="str">"ssh"</span>],
-  <span class="str">"env"</span>: [<span class="str">"MIKROTIK_HOST"</span>] } }
-<span class="com">---</span>
-
-<span class="com"># MikroTik Operations</span>
-
-Senior network engineer for MikroTik RouterOS.
-Speak Brazilian Portuguese. Never run destructive
-commands without explicit confirmation.
-
-<span class="com">## Mandatory workflow</span>
-<span class="num">1.</span> Identify · <span class="num">2.</span> Snapshot · <span class="num">3.</span> Apply
-<span class="num">4.</span> Validate · <span class="num">5.</span> Report</pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== WORKFLOW ============== -->
-<section class="section" id="workflow">
-  <div class="container">
-    <div class="section-header">
-      <div>
-        <div class="section-num">02 / WORKFLOW</div>
-        <h2 class="section-title">O ciclo de <em>5 etapas</em> obrigatórias</h2>
-        <p class="section-lead">
-          Toda skill obriga o agente a seguir o mesmo ritual antes de mexer em produção. Não é decoração — é o que separa um agente que ajuda de um agente que derruba a rede do cliente.
-        </p>
-      </div>
-    </div>
-
-    <div class="workflow-row">
-      <div class="wf-step">
-        <div class="wf-num">01</div>
-        <div class="wf-name">Identify</div>
-        <div class="wf-desc">Versão do firmware, hostname, contexto do equipamento.</div>
-      </div>
-      <div class="wf-step">
-        <div class="wf-num">02</div>
-        <div class="wf-name">Snapshot</div>
-        <div class="wf-desc">Backup ou export antes de qualquer mudança.</div>
-      </div>
-      <div class="wf-step">
-        <div class="wf-num">03</div>
-        <div class="wf-name">Apply</div>
-        <div class="wf-desc">Aplica com safe-mode, commit-confirmed ou scheduler de rollback.</div>
-      </div>
-      <div class="wf-step">
-        <div class="wf-num">04</div>
-        <div class="wf-name">Validate</div>
-        <div class="wf-desc">Confere que a mudança fez efeito esperado.</div>
-      </div>
-      <div class="wf-step">
-        <div class="wf-num">05</div>
-        <div class="wf-name">Report</div>
-        <div class="wf-desc">Relatório markdown estruturado do que foi feito.</div>
-      </div>
-    </div>
-
-    <div class="confirm">
-      <div class="confirm-label">SAFETY · CONFIRMATION PATTERN</div>
-      <div class="confirm-title">Ops destrutivas exigem confirmação literal</div>
-      <p class="confirm-body">
-        Para <strong>qualquer</strong> operação que pode quebrar produção (apagar regra, derrubar peer BGP, deletar VM, dar reload, factory reset), o agente <strong>recusa</strong> até receber do usuário a frase exata
-        <span class="confirm-cmd">CONFIRMO &lt;comando&gt;</span> — paráfrases como "ok pode mandar" ou "manda ver" são rejeitadas. Isso é instrução fixa em todas as 8 skills.
-      </p>
-    </div>
-  </div>
-</section>
-
 <!-- ============== SKILLS ============== -->
 <section class="section" id="skills">
   <div class="container">
     <div class="section-header">
       <div>
-        <div class="section-num">03 / CATÁLOGO</div>
+        <div class="section-num">01 / CATÁLOGO</div>
         <h2 class="section-title">As <em>8 skills</em> do pacote</h2>
         <p class="section-lead">
           Cada uma é especializada num domínio. O NetAgent ativa a skill certa baseado no que o usuário pede no WhatsApp via Evolution API.
@@ -1415,89 +2134,932 @@ commands without explicit confirmation.
   </div>
 </section>
 
-<!-- ============== INTEGRATION ============== -->
-<section class="section" id="integracao">
+<!-- ============== REPO CTA (now section 02) ============== -->
+<section class="section" id="repositorio">
   <div class="container">
     <div class="section-header">
       <div>
-        <div class="section-num">04 / INTEGRAÇÃO</div>
-        <h2 class="section-title">Como tudo isso roda <em>no NetAgent</em></h2>
+        <div class="section-num">02 / OPEN SOURCE</div>
+        <h2 class="section-title">Todas as 8 skills <em>no GitHub</em></h2>
         <p class="section-lead">
-          O NetAgent recebe mensagem do WhatsApp via Evolution API, decide qual agente especializado deve responder (Network ou Infra), e o agente carrega as skills relevantes do diretório montado.
+          Código completo, exemplos de uso, <code class="inline">.env.example</code> e documentação. Clone, fork, contribua ou adapte para o seu provedor — tudo aberto sob licença MIT.
+        </p>
+      </div>
+    </div>
+    <div class="repo-cta" style="margin-top: 0;">
+      <div>
+        <div class="repo-cta-label">★ MIT LICENSE</div>
+        <div class="repo-cta-title">github.com/clfigueiredo/<em style="color: var(--accent);">skills_forumtelecom</em></div>
+        <p class="repo-cta-body">
+          Pacote dual-runtime — mesmo arquivo roda no NetAgent (Claude Agent SDK) e no OpenClaw, sem mudar uma vírgula.
+        </p>
+        <a href="https://github.com/clfigueiredo/skills_forumtelecom" target="_blank" rel="noopener" class="repo-cta-url">github.com/clfigueiredo/skills_forumtelecom</a>
+      </div>
+      <a href="https://github.com/clfigueiredo/skills_forumtelecom" target="_blank" rel="noopener" class="repo-cta-cta">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        Acessar repositório
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== USAGE / IMPLEMENTAÇÃO ============== -->
+<section class="section" id="implementacao">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">03 / IMPLEMENTAÇÃO</div>
+        <h2 class="section-title">Já tem um <em>NetAgent</em> ou outros agentes rodando?</h2>
+        <p class="section-lead">
+          Não precisa migrar nada manualmente. Cole o prompt abaixo no Claude Code (ou Antigravity) e deixe o próprio agente analisar o repositório, mapear sua arquitetura atual e te entregar um plano de integração para você autorizar antes da implementação.
         </p>
       </div>
     </div>
 
-    <div class="integration-flow">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-title">User → WhatsApp</div>
-        <div class="step-body">
-          Usuário manda mensagem tipo <em>"o BGP do MikroTik de borda caiu, dá uma olhada"</em>. Evolution API entrega o webhook ao FastAPI do NetAgent.
+    <div class="usage-callout">
+      <div class="usage-callout-label">⚡ FAST PATH · COPIA E COLA</div>
+      <div class="usage-callout-title">Como usar essas skills com a sua infra existente</div>
+      <p class="usage-callout-body">
+        <strong>1)</strong> Abra seu cliente de agente preferido na pasta do seu projeto atual.<br>
+        <strong>2)</strong> Cole o prompt abaixo e deixe o agente acessar o repositório, ler tudo e propor o plano.<br>
+        <strong>3)</strong> Revise, ajuste e <strong>só depois</strong> autorize a implementação. O prompt já pede explicitamente para <em>não</em> executar nada antes da sua aprovação.
+      </p>
+      <div class="usage-tools">
+        <span class="usage-tool-tag">Claude Code</span>
+        <span class="usage-tool-tag">Antigravity</span>
+        <span class="usage-tool-tag">Cursor</span>
+        <span class="usage-tool-tag">Codex CLI</span>
+      </div>
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-block-header">
+        <span class="prompt-block-label">PROMPT PRONTO · PORTUGUÊS-BR</span>
+        <button class="copy-btn" type="button" data-target="#promptText" aria-label="Copiar prompt">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
+          <span class="copy-btn-text">Copiar</span>
+        </button>
+      </div>
+      <div class="prompt-block-body" id="promptText">Acesse o repositório https://github.com/clfigueiredo/skills_forumtelecom — ele contém um pacote de skills para o Claude Agent SDK (mesmo runtime do Claude Code) voltado a operações de redes de provedor: MikroTik, Cisco, Huawei NE, OLT FiberHome, OLT Huawei, Proxmox, Docker e Zabbix.
+
+Sua tarefa é planejar a integração dessas skills à arquitetura de agentes que já está rodando aqui. Faça o seguinte, nessa ordem:
+
+1. CONHECIMENTO DO REPOSITÓRIO
+   - Clone ou leia o repositório completo.
+   - Para cada SKILL.md: leia o frontmatter (name, description, metadata.openclaw), o workflow obrigatório de 5 etapas (Identify · Snapshot · Apply · Validate · Report) e o padrão de confirmação literal "CONFIRMO &lt;comando&gt;" para operações destrutivas.
+   - Liste env vars, binários, permissões e tools que cada skill exige.
+
+2. MAPEAMENTO DA MINHA INFRA ATUAL
+   - Varra o diretório atual: agentes existentes, dispatcher, system prompts, ferramentas permitidas (allowed_tools), runtime (Claude Agent SDK, OpenClaw, Coolify, Docker, etc.), variáveis de ambiente já provisionadas, credenciais e integrações (Evolution API, RADIUS, Zabbix, etc.).
+   - Identifique a lógica de roteamento entre agentes e como o contexto é passado entre eles.
+   - Não assuma nada — leia os arquivos antes de afirmar.
+
+3. PLANO DE INTEGRAÇÃO
+   - Quais skills se encaixam diretamente em quais agentes existentes.
+   - Quais conflitos surgem (system prompts sobrepostos, tools faltando, permissões divergentes, env vars ausentes).
+   - Quando um agente novo é necessário (justifique cada criação — não crie agente por criar).
+   - Novos fluxos de dispatcher / roteamento, se preciso.
+   - Ordem de implementação por prioridade e risco (começar pelo de menor blast radius).
+   - Lista completa de env vars, secrets, hosts e dependências externas (SSH, REST, API tokens) que precisam ser provisionadas antes do go-live.
+   - Estratégia de teste por skill: como validar em homologação antes de apontar pra produção.
+
+4. ENTREGA
+   - Não execute nenhum comando, não altere arquivo nenhum, não faça commit, não rode build.
+   - Me entregue o plano completo nesta conversa em formato markdown estruturado.
+   - Ao final do plano, liste perguntas em aberto que você precisa que eu responda antes da implementação.
+   - Aguarde minha autorização explícita antes de partir para qualquer modificação.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ECOSSISTEMA / DOIS AGENTES EM PRODUÇÃO ============== -->
+<section class="section" id="ecossistema">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">04 / ECOSSISTEMA</div>
+        <h2 class="section-title">Os <em>dois agentes</em> que já rodam hoje</h2>
+        <p class="section-lead">
+          Antes de integrar as skills, vale entender as duas arquiteturas de agente que já estão em produção. Cobrem o mesmo domínio (NOC para provedor) mas seguem filosofias bem diferentes — e por isso o plano de adoção das skills muda em cada uma.
+        </p>
+      </div>
+    </div>
+
+    <div class="eco-grid">
+
+      <!-- ===== Card A — noc-agent-35 ===== -->
+      <div class="eco-card">
+        <div class="eco-card-head">
+          <div class="eco-card-emoji">🛰️</div>
+          <div style="flex: 1;">
+            <div class="eco-card-title">noc-agent<span class="accent">-35</span></div>
+            <div class="eco-card-tagline">"Pipeline multi-agente nativo Claude com aprovação humana via WhatsApp."</div>
+            <a href="https://github.com/clfigueiredo/noc-agent-35" target="_blank" rel="noopener" class="eco-repo-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+              github.com/clfigueiredo/noc-agent-35
+            </a>
+          </div>
+        </div>
+
+        <div class="eco-arch"><span class="arch-comment"># pipeline de 3 agentes</span>
+[Webhook Zabbix / WhatsApp]
+        <span class="arch-arrow">↓</span>
+   <span class="arch-node">Support Agent</span>  <span class="arch-comment">(classifier + router)</span>
+        <span class="arch-arrow">↓</span>
+   ┌────────┴────────┐
+   <span class="arch-arrow">↓</span>                 <span class="arch-arrow">↓</span>
+<span class="arch-node">MikroTik Agent</span>     <span class="arch-node">Linux Agent</span>
+   <span class="arch-arrow">↓</span>                 <span class="arch-arrow">↓</span>
+   ssh_mikrotik     ssh_linux
+        <span class="arch-arrow">↓</span>
+[Aprovação WhatsApp → execução]</div>
+
+        <div>
+          <div class="eco-row">
+            <div class="eco-row-label">Stack</div>
+            <div class="eco-row-value">
+              <div class="eco-stack">
+                <span class="eco-chip eco-chip-primary">Node.js 18+</span>
+                <span class="eco-chip">Express</span>
+                <span class="eco-chip">Socket.IO</span>
+                <span class="eco-chip">React/Vite</span>
+                <span class="eco-chip">SQLite</span>
+                <span class="eco-chip">Prisma</span>
+              </div>
+            </div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">LLM</div>
+            <div class="eco-row-value"><strong>Anthropic Claude</strong> (<code>claude-sonnet-4-20250514</code>) com <strong>Native Tool Use</strong> — function calling direto.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Tools</div>
+            <div class="eco-row-value"><code>search_device</code>, <code>list_devices</code>, <code>ssh_mikrotik_exec</code>, <code>ssh_linux_exec</code>, <code>ping_host</code>, <code>traceroute_host</code></div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Entrada</div>
+            <div class="eco-row-value">Webhook Zabbix · Webhook Evolution (WhatsApp) · Chat web · API REST</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Skills</div>
+            <div class="eco-row-value"><strong>Não usa SKILL.md</strong> — comportamento embutido em prompts + tools.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Deploy</div>
+            <div class="eco-row-value">Single-tenant · SQLite local · simples de subir.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Diferencial</div>
+            <div class="eco-row-value">Aprovação humana via WhatsApp <strong>antes</strong> de remediar — o agente não toca em nada sem confirmação.</div>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-title">Dispatcher → Agent</div>
-        <div class="step-body">
-          O Dispatcher classifica a intenção (network) e roteia para o NetworkAgent. O agente é instanciado com o diretório de skills montado em <code class="inline">/app/skills</code>.
+
+      <!-- ===== Card B — netagente_oficial ===== -->
+      <div class="eco-card eco-card-b">
+        <div class="eco-card-head">
+          <div class="eco-card-emoji">🌐</div>
+          <div style="flex: 1;">
+            <div class="eco-card-title">netagente<span class="accent">_oficial</span></div>
+            <div class="eco-card-tagline">"Plataforma SaaS multi-tenant com orquestrador + drivers MCP e RAG."</div>
+            <a href="https://github.com/clfigueiredo/netagente_oficial" target="_blank" rel="noopener" class="eco-repo-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+              github.com/clfigueiredo/netagente_oficial
+            </a>
+          </div>
+        </div>
+
+        <div class="eco-arch"><span class="arch-comment"># orquestrador + MCPs</span>
+[Web UI / WhatsApp / MCP remoto]
+        <span class="arch-arrow">↓</span>
+  <span class="arch-node">Main Agent</span> <span class="arch-comment">(Python/FastAPI :8000)</span>
+        <span class="arch-arrow">↓</span>
+  <span class="arch-node">RAG (pgvector)</span> + memória
+        <span class="arch-arrow">↓</span>
+  ┌─────────┼─────────┐
+  <span class="arch-arrow">↓</span>         <span class="arch-arrow">↓</span>         <span class="arch-arrow">↓</span>
+<span class="arch-node">MCP Mikr.</span>  <span class="arch-node">MCP Linux</span>  <span class="arch-node">MCP PG</span>
+  <span class="arch-arrow">↓</span>         <span class="arch-arrow">↓</span>         <span class="arch-arrow">↓</span>
+[WireGuard → infra do cliente]</div>
+
+        <div>
+          <div class="eco-row">
+            <div class="eco-row-label">Stack</div>
+            <div class="eco-row-value">
+              <div class="eco-stack">
+                <span class="eco-chip eco-chip-primary">React/Vite</span>
+                <span class="eco-chip eco-chip-primary">Node 20</span>
+                <span class="eco-chip eco-chip-primary">Python 3.11</span>
+                <span class="eco-chip">FastAPI</span>
+                <span class="eco-chip">PostgreSQL 16</span>
+                <span class="eco-chip">pgvector</span>
+                <span class="eco-chip">Redis 7</span>
+                <span class="eco-chip">Traefik v3</span>
+                <span class="eco-chip">WireGuard</span>
+              </div>
+            </div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">LLM</div>
+            <div class="eco-row-value"><strong>OpenAI</strong> (<code>sk-…</code>) — <strong>não é Claude</strong>. Esse é o ponto crítico de adaptação.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Tools</div>
+            <div class="eco-row-value">Via <strong>MCP servers customizados</strong>: <code>MCP MikroTik</code>, <code>MCP Linux</code>, <code>MCP Postgres</code>. Plugáveis de fora.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Entrada</div>
+            <div class="eco-row-value">Web UI · Webhook Evolution · <strong>MCP remoto</strong> (Claude Code de outra máquina chama <code>/mcp</code> com Bearer)</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Skills</div>
+            <div class="eco-row-value">Sem <code>SKILL.md</code> discretos — conhecimento <strong>embutido no schema do Postgres</strong> (seed em <code>init.sql</code>) e RAG vetorial.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Deploy</div>
+            <div class="eco-row-value"><strong>Multi-tenant SaaS</strong> · schema isolado por cliente · WireGuard pra entrar na rede do cliente.</div>
+          </div>
+          <div class="eco-row">
+            <div class="eco-row-label">Diferencial</div>
+            <div class="eco-row-value">RAG com memória vetorial + tunelamento via VPN para infraestrutura do cliente final.</div>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-title">Agent → Skill</div>
-        <div class="step-body">
-          O Claude Agent SDK lê o frontmatter de cada SKILL.md, decide que <code class="inline">mikrotik-ops</code> é a skill certa, carrega o playbook e executa o workflow de 5 etapas via SSH/MCP.
+
+    </div>
+
+    <!-- ============ PLANO SUGERIDO ============ -->
+    <div style="margin-top: 80px;">
+      <div class="section-header" style="margin-bottom: 32px;">
+        <div>
+          <div class="section-num">PLANO SUGERIDO · POR AGENTE</div>
+          <h2 class="section-title" style="font-size: clamp(28px, 3.5vw, 40px);">Cada um precisa de uma <em>abordagem diferente</em></h2>
+          <p class="section-lead">
+            O <code class="inline">noc-agent-35</code> aceita as skills quase como elas são — mesmo runtime Claude. O <code class="inline">netagente_oficial</code> precisa de tradução de formato (OpenAI ≠ Claude SDK) e respeitar isolamento multi-tenant. Roteiro abaixo:
+          </p>
+        </div>
+      </div>
+
+      <div class="plan-wrap">
+
+        <!-- Plano A -->
+        <div class="plan-card">
+          <div class="plan-card-label">PLANO A · noc-agent-35</div>
+          <div class="plan-card-title">Adoção direta — mesmo runtime Claude<span class="plan-risk risk-low">Risco baixo</span></div>
+
+          <div class="plan-step">
+            <div class="plan-step-num">1</div>
+            <div class="plan-step-body"><strong>Montar skills/ como volume readonly.</strong> Adicionar <code>./forum-telecom-skills/skills:/app/skills:ro</code> no <code>docker-compose</code> e expor via <code>setting_sources=["project"]</code> + <code>cwd="/app/skills"</code> nos 3 agentes.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">2</div>
+            <div class="plan-step-body"><strong>Mapear skill ↔ agente atual.</strong> <code>MikroTik Agent</code> carrega <code>mikrotik-ops</code>. <code>Linux Agent</code> ganha <code>docker-ops</code> + <code>proxmox-ops</code>. <code>Support Agent</code> recebe <code>zabbix-ops</code> para roteamento por alerta.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">3</div>
+            <div class="plan-step-body"><strong>Criar 4 agentes novos.</strong> <code>cisco-ops</code>, <code>huawei-ne-ops</code>, <code>olt-fiberhome-ops</code>, <code>olt-huawei-ops</code> — cada um espelhando o padrão do MikroTik Agent existente, com tool <code>ssh_exec</code> genérica.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">4</div>
+            <div class="plan-step-body"><strong>Estender o Support Agent.</strong> Adicionar regras de classificação para identificar Cisco vs Huawei vs OLT pelo conteúdo do alerta/mensagem (regex no hostname do Zabbix + palavras-chave).</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">5</div>
+            <div class="plan-step-body"><strong>Reaproveitar o flow de aprovação WhatsApp.</strong> Já existe — só garantir que toda <em>tool destrutiva</em> nas novas skills passe por ele. As skills já exigem <code>CONFIRMO &lt;comando&gt;</code> nativamente.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">6</div>
+            <div class="plan-step-body"><strong>Provisionar env vars.</strong> <code>$CISCO_HOST</code>, <code>$HUAWEI_HOST</code>, <code>$FH_OLT_HOST</code>, <code>$HW_OLT_HOST</code>, <code>$ZABBIX_TOKEN</code>, etc. Encriptar com o mesmo AES-256-GCM que já protege as credenciais do MikroTik.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">7</div>
+            <div class="plan-step-body"><strong>Estratégia de teste.</strong> Subir staging com 1 OLT FiberHome real + 1 Cisco lab. Rodar workflow Identify → Snapshot → Validate <em>sem</em> Apply por 1 semana. Aprovação manual de cada Apply até convergir.</div>
+          </div>
+        </div>
+
+        <!-- Plano B -->
+        <div class="plan-card plan-b">
+          <div class="plan-card-label">PLANO B · netagente_oficial</div>
+          <div class="plan-card-title">Adaptação — OpenAI + multi-tenant + MCP<span class="plan-risk risk-med">Risco médio</span></div>
+
+          <div class="plan-step">
+            <div class="plan-step-num">1</div>
+            <div class="plan-step-body"><strong>Decidir LLM primeiro.</strong> Duas rotas: (a) manter OpenAI e <em>traduzir</em> SKILL.md para system prompts + tool defs no formato OpenAI; (b) trocar o agente Python para Claude Agent SDK e consumir SKILL.md nativamente. Recomendo <strong>(b)</strong> pra evitar drift de formato a longo prazo.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">2</div>
+            <div class="plan-step-body"><strong>Empacotar cada skill como MCP server.</strong> <code>mcp-mikrotik-ops</code>, <code>mcp-cisco-ops</code>, etc. Mantém a filosofia atual (drivers plugáveis) e isola permissão/auditoria por skill.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">3</div>
+            <div class="plan-step-body"><strong>Resolver isolamento multi-tenant.</strong> Cada tenant aponta os MCPs para suas próprias credenciais via WireGuard. Adicionar tabela <code>tenant_skills</code> que define quais skills cada cliente pode usar (gating de billing/feature).</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">4</div>
+            <div class="plan-step-body"><strong>Migrar conhecimento embutido para SKILL.md.</strong> Hoje o "saber" tá no seed do Postgres. Extrair para <code>SKILL.md</code> versionados em git. RAG continua existindo pra runbooks específicos do tenant.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">5</div>
+            <div class="plan-step-body"><strong>Criar 5 MCP servers novos.</strong> Cisco (4 plataformas), Huawei NE (V5/V8), OLT FiberHome (CLI por diretórios), OLT Huawei (VRP-style), Zabbix (JSON-RPC com rate limit). Cada um respeita os limites práticos da API documentados na skill.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">6</div>
+            <div class="plan-step-body"><strong>Confirmação humana via WhatsApp.</strong> O netagente já tem Evolution wired — replicar o pattern do <code>noc-agent-35</code>: bloquear ops destrutivas até receber <code>CONFIRMO &lt;comando&gt;</code> no chat.</div>
+          </div>
+          <div class="plan-step">
+            <div class="plan-step-num">7</div>
+            <div class="plan-step-body"><strong>Estratégia de rollout.</strong> Feature flag por tenant. Começar com <strong>1 cliente piloto</strong> (interno), só com skills de leitura (<code>display</code>, <code>show</code>). Liberar mutação só após 2 semanas de logs limpos.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="confirm" style="border-color: var(--cyan); background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(0, 255, 145, 0.04)); margin-top: 64px;">
+        <div class="confirm-label" style="color: var(--cyan);">DECISÃO ESTRATÉGICA</div>
+        <div class="confirm-title">Convergir para um runtime único?</div>
+        <p class="confirm-body">
+          Manter <strong>dois runtimes diferentes</strong> (Claude no <code class="inline">noc-agent-35</code>, OpenAI no <code class="inline">netagente_oficial</code>) significa duplicar manutenção a cada nova skill. Vale considerar migrar o <code class="inline">netagente_oficial</code> para Claude Agent SDK também — assim o pacote <code class="inline">forum-telecom-skills</code> vira <strong>fonte única de verdade</strong> para os dois agentes, sem tradução de formato no meio.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== DEEP DIVE DIVIDER ============== -->
+<section class="section" id="entender" style="padding-bottom: 0; border-bottom: none;">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">05 / DEEP DIVE · OPCIONAL</div>
+        <h2 class="section-title">Quer entender por <em>dentro</em>?</h2>
+        <p class="section-lead">
+          A IA vai gerar a skill pra você. O que importa não é criar do zero — é saber <strong style="color: var(--text);">melhorar</strong> o que ela gerou. Pra isso, precisa entender como funciona uma skill por baixo do capô. Daqui pra baixo é leitura técnica, fica à vontade pra parar quando quiser.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ARQUITETURA ============== -->
+<section class="section" id="arquitetura" style="padding-top: 32px;">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">05.1 · ARQUITETURA</div>
+        <h2 class="section-title">O que é uma <em>skill</em>, mecanicamente</h2>
+        <p class="section-lead">
+          Uma skill é um arquivo <code class="inline">SKILL.md</code> que vira contexto para o LLM. O agente lê o frontmatter, decide se a skill é relevante para o pedido do usuário, carrega o conteúdo e segue o playbook. Sem código compilado, sem black-box.
+        </p>
+      </div>
+    </div>
+
+    <div class="arch">
+      <div class="arch-side">
+        <h3>Anatomia de um SKILL.md</h3>
+        <p>O frontmatter YAML define <code class="inline">name</code> e <code class="inline">description</code> — densos em palavras-gatilho. Quanto melhor a description, melhor o agente decide quando ativar.</p>
+        <p>O <code class="inline">metadata.openclaw</code> declara binários e env vars exigidos. O OpenClaw usa para gating; o Claude SDK ignora silenciosamente.</p>
+        <p>O corpo em markdown é o playbook — instruções claras, comandos críticos, regras de segurança, templates. O agente lê isso e executa.</p>
+      </div>
+      <div class="arch-side">
+        <pre class="code" data-lang="SKILL.md"><span class="com">---</span>
+<span class="kw">name</span>: mikrotik-ops
+<span class="kw">description</span>: Senior MikroTik RouterOS engineer.
+  Use when user asks to diagnose, configure, audit
+  MikroTik devices. Triggers: BGP, hotspot, /interface,
+  CCR, CRS, RouterOS 6 vs 7, queue tree...
+<span class="kw">metadata</span>: { <span class="str">"openclaw"</span>: { <span class="str">"emoji"</span>: <span class="str">"🛜"</span>,
+  <span class="str">"requires"</span>: { <span class="str">"anyBins"</span>: [<span class="str">"ssh"</span>],
+  <span class="str">"env"</span>: [<span class="str">"MIKROTIK_HOST"</span>] } }
+<span class="com">---</span>
+
+<span class="com"># MikroTik Operations</span>
+
+Senior network engineer for MikroTik RouterOS.
+Speak Brazilian Portuguese. Never run destructive
+commands without explicit confirmation.
+
+<span class="com">## Mandatory workflow</span>
+<span class="num">1.</span> Identify · <span class="num">2.</span> Snapshot · <span class="num">3.</span> Apply
+<span class="num">4.</span> Validate · <span class="num">5.</span> Report</pre>
+      </div>
+    </div>
+
+    <!-- ============ ANATOMIA DETALHADA ============ -->
+    <div class="anatomy-intro">
+      <div class="anatomy-intro-label">DEEP DIVE · CLAUDE AGENT SDK</div>
+      <h3>Anatomia <em>completa</em> — desmontando uma skill real, parte por parte</h3>
+      <p>
+        Skill no Claude Agent SDK não é mágica: é um arquivo markdown com frontmatter YAML que o agente lê como contexto adicional. Vamos pegar a <code class="inline">mikrotik-ops</code> de verdade e abrir cada bloco para ver o que cada coisa faz, por que está ali e como escrever a sua.
+      </p>
+    </div>
+
+    <!-- ===== Step 1: Nome do diretório + arquivo ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">01</div>
+        <div class="anatomy-step-tag">FILESYSTEM · CONVENÇÃO</div>
+        <div class="anatomy-step-title">Onde a skill mora no disco</div>
+        <div class="anatomy-step-why">
+          O agente descobre skills varrendo o diretório raiz definido em <strong>cwd</strong>. Cada skill é uma pasta com um <code style="color:var(--cyan);">SKILL.md</code> obrigatório.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <p>O Claude Agent SDK escaneia o diretório do projeto procurando subpastas que contenham um arquivo <strong>SKILL.md</strong>. O nome da pasta vira identificador convencional — manter <em>kebab-case</em> e descritivo (ex: <code class="inline">mikrotik-ops</code>, não <code class="inline">mk</code>).</p>
+        <pre class="anatomy-code" data-lang="tree">forum-telecom-skills/
+├── skills/
+│   ├── <span class="md-bold">mikrotik-ops/</span>          <span class="annot"># nome-do-dir = identificador</span>
+│   │   ├── <span class="md-bold">SKILL.md</span>           <span class="annot"># obrigatório · entry point</span>
+│   │   └── references/                <span class="annot"># opcional · contexto pesado</span>
+│   │       ├── routeros-v6-vs-v7.md   <span class="annot"># diffs v6↔v7</span>
+│   │       └── safe-templates.rsc     <span class="annot"># snippets prontos</span>
+│   ├── cisco-ops/
+│   │   └── SKILL.md
+│   └── ...</pre>
+        <p>Pra carregar tudo de uma vez no agente:</p>
+        <pre class="anatomy-code" data-lang="python"><span class="yaml-comm"># initialização do agente</span>
+<span class="yaml-key">from</span> claude_agent_sdk <span class="yaml-key">import</span> ClaudeAgentOptions, query
+
+opts = ClaudeAgentOptions(
+    system_prompt=<span class="yaml-str">"Você é o NetworkAgent."</span>,
+    setting_sources=[<span class="yaml-str">"project"</span>],          <span class="annot"># habilita autodescoberta</span>
+    cwd=<span class="yaml-str">"/app/skills"</span>,                      <span class="annot"># raiz das skills</span>
+    allowed_tools=[<span class="yaml-str">"Bash"</span>, <span class="yaml-str">"Read"</span>],
+)</pre>
+      </div>
+    </div>
+
+    <!-- ===== Step 2: Frontmatter — name + description ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">02</div>
+        <div class="anatomy-step-tag">FRONTMATTER · YAML</div>
+        <div class="anatomy-step-title">name + description = como o agente decide ativar</div>
+        <div class="anatomy-step-why">
+          O agente lê só o frontmatter de cada skill antes de escolher qual carregar. <strong>Description densa em palavras-gatilho</strong> = ativação mais precisa.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <p>Esse é o frontmatter real da <code class="inline">mikrotik-ops</code>:</p>
+        <pre class="anatomy-code" data-lang="SKILL.md (linhas 1-4)"><span class="yaml-comm">---</span>
+<span class="yaml-key">name</span>: <span class="yaml-val">mikrotik-ops</span>
+<span class="yaml-key">description</span>: <span class="yaml-str">Senior MikroTik RouterOS network engineer.
+  Use when the user asks to diagnose, configure, audit, or
+  troubleshoot MikroTik devices via SSH or REST API.
+  Triggers include MikroTik, RouterOS, Winbox, CCR, CRS, hAP,
+  RB, BGP on MikroTik, hotspot MikroTik, PPPoE concentrator,
+  CAPsMAN, queue tree, mangle, fasttrack, RouterOS 6 vs 7,
+  /interface, /ip firewall, /routing, /system identity,
+  .rsc export, "show me bgp peers", "block port on router",
+  "list hotspot users", "audit firewall", "check failover".</span>
+<span class="yaml-key">metadata</span>: { ... }
+<span class="yaml-comm">---</span></pre>
+
+        <div class="anatomy-annots">
+          <div class="anatomy-annot-row">
+            <div class="annot-key">name</div>
+            <div class="annot-val">Slug curto, único no projeto. Convencionalmente igual ao nome do diretório. Não precisa ser bonito — precisa ser único.</div>
+          </div>
+          <div class="anatomy-annot-row">
+            <div class="annot-key">description</div>
+            <div class="annot-val">O <strong>seletor</strong> da skill. O agente compara o pedido do usuário contra essa string. Padrão: 1 frase de papel ("Senior MikroTik engineer") + "Use when…" + lista exaustiva de gatilhos (modelos, comandos típicos, frases coloquiais entre aspas).</div>
+          </div>
+          <div class="anatomy-annot-row">
+            <div class="annot-key">gatilhos</div>
+            <div class="annot-val">Inclua <strong>jargão técnico</strong> (<code>/ip firewall</code>), <strong>nomes de hardware</strong> (<code>CCR</code>, <code>hAP</code>) e <strong>frases coloquiais</strong> ("show me bgp peers"). Quanto mais variantes, melhor o recall.</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top: 64px;">
-      <h3 style="font-family: var(--display); font-size: 28px; font-weight: 400; margin-bottom: 24px;">
-        <em style="color: var(--accent); font-style: italic;">Código de exemplo</em> · NetworkAgent
-      </h3>
-      <pre class="code" data-lang="python"><span class="com"># netagent/agents/network_agent.py</span>
-<span class="kw">from</span> claude_agent_sdk <span class="kw">import</span> query, ClaudeAgentOptions
-
-<span class="kw">class</span> <span class="fn">NetworkAgent</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(self):
-        self.options = ClaudeAgentOptions(
-            system_prompt=<span class="str">"Você é o NetworkAgent da Fórum Telecom."</span>,
-            setting_sources=[<span class="str">"project"</span>],          <span class="com"># carrega skills do dir</span>
-            cwd=<span class="str">"/app/skills"</span>,                      <span class="com"># monta forum-telecom-skills aqui</span>
-            allowed_tools=[<span class="str">"Bash"</span>, <span class="str">"Read"</span>, <span class="str">"WebSearch"</span>],
-            permission_mode=<span class="str">"default"</span>,             <span class="com"># exige confirmação humana</span>
-        )
-
-    <span class="kw">async def</span> <span class="fn">handle</span>(self, user_message: str):
-        <span class="kw">async for</span> msg <span class="kw">in</span> query(prompt=user_message, options=self.options):
-            <span class="kw">yield</span> msg</pre>
-
-      <h3 style="font-family: var(--display); font-size: 28px; font-weight: 400; margin: 56px 0 24px;">
-        <em style="color: var(--accent); font-style: italic;">Docker Compose</em> · skills como volume
-      </h3>
-      <pre class="code" data-lang="docker-compose.yml"><span class="kw">services</span>:
-  <span class="kw">network-agent</span>:
-    image: forumtelecom/netagent-network:latest
-    <span class="kw">volumes</span>:
-      - ./forum-telecom-skills/skills:/app/skills:ro
-    <span class="kw">environment</span>:
-      - <span class="num">MIKROTIK_HOST</span>=${MIKROTIK_HOST}
-      - <span class="num">CISCO_HOST</span>=${CISCO_HOST}
-      - <span class="num">HUAWEI_HOST</span>=${HUAWEI_HOST}
-      - <span class="num">FH_OLT_HOST</span>=${FH_OLT_HOST}
-      - <span class="num">HW_OLT_HOST</span>=${HW_OLT_HOST}
-      - <span class="num">ANTHROPIC_API_KEY</span>=${ANTHROPIC_API_KEY}
-    <span class="kw">depends_on</span>:
-      - dispatcher
-      - evolution-api</pre>
+    <!-- ===== Step 3: metadata.openclaw ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">03</div>
+        <div class="anatomy-step-tag">FRONTMATTER · METADATA</div>
+        <div class="anatomy-step-title">metadata.openclaw — gating de runtime</div>
+        <div class="anatomy-step-why">
+          Bloco <strong>opcional</strong>. O Claude Agent SDK ignora silenciosamente — o OpenClaw usa pra checar dependências antes de carregar a skill.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <pre class="anatomy-code" data-lang="SKILL.md (linha 4)"><span class="yaml-key">metadata</span>: { <span class="yaml-str">"openclaw"</span>: {
+  <span class="yaml-str">"emoji"</span>: <span class="yaml-str">"🛜"</span>,
+  <span class="yaml-str">"requires"</span>: {
+    <span class="yaml-str">"anyBins"</span>: [<span class="yaml-str">"ssh"</span>, <span class="yaml-str">"curl"</span>],         <span class="annot"># precisa de ssh OU curl no PATH</span>
+    <span class="yaml-str">"env"</span>:     [<span class="yaml-str">"MIKROTIK_HOST"</span>]          <span class="annot"># env var obrigatória</span>
+  }
+} }</pre>
+        <div class="anatomy-annots">
+          <div class="anatomy-annot-row">
+            <div class="annot-key">emoji</div>
+            <div class="annot-val">Identidade visual no UI do OpenClaw. Cosmético.</div>
+          </div>
+          <div class="anatomy-annot-row">
+            <div class="annot-key">anyBins</div>
+            <div class="annot-val">Lista de binários — pelo menos um precisa estar no <code>$PATH</code>. Use <code>allBins</code> se todos forem necessários.</div>
+          </div>
+          <div class="anatomy-annot-row">
+            <div class="annot-key">env</div>
+            <div class="annot-val">Lista de variáveis de ambiente obrigatórias. Skill é desativada se faltar qualquer uma — evita o agente tentar e falhar feio.</div>
+          </div>
+        </div>
+        <p><strong>Boa prática:</strong> declarar <code class="inline">metadata.openclaw</code> mesmo rodando só no Claude SDK. É documentação executável das dependências e prepara o terreno se um dia migrar de runtime.</p>
+      </div>
     </div>
 
-    <div class="confirm" style="border-color: var(--accent); background: linear-gradient(135deg, rgba(0, 255, 145, 0.06), rgba(0, 212, 255, 0.06));">
-      <div class="confirm-label" style="color: var(--accent);">PRO TIP · FONTE ÚNICA DE VERDADE</div>
-      <div class="confirm-title">Mantenha as skills num diretório versionado</div>
+    <!-- ===== Step 4: Identity / persona ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">04</div>
+        <div class="anatomy-step-tag">CORPO · IDENTITY</div>
+        <div class="anatomy-step-title">Persona e regras de comportamento</div>
+        <div class="anatomy-step-why">
+          Define <strong>como</strong> o agente fala e opera. Linguagem, tom, regras de honestidade.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <pre class="anatomy-code" data-lang="SKILL.md (linhas 7-15)"><span class="md-h"># MikroTik Operations</span>
+
+You are a senior network engineer specialized in MikroTik
+RouterOS. Operate as a peer engineer, not an assistant.
+Think before acting, follow procedure, never run destructive
+commands without explicit confirmation.
+
+<span class="md-h">## Identity</span>
+
+- Speak in <span class="md-bold">**Brazilian Portuguese**</span> with the user.
+  Keep RouterOS commands and config snippets in original syntax.
+- Be concise and direct. Senior engineers don't pad answers.
+- When uncertain about syntax, <span class="md-bold">**say so**</span>. Never invent flags.</pre>
+        <p><strong>Por que importa:</strong> sem essa âncora o agente cai no padrão Anthropic genérico (assistente prestativo, prosa longa, em inglês). Aqui forçamos: <em>peer engineer</em>, português, conciso, honesto sobre incertezas.</p>
+        <p><strong>Boa prática:</strong> <em>nunca</em> escreva "be helpful" — isso já é default. Escreva o que <strong>desviar</strong> do padrão (idioma, tom específico, regras de recusa).</p>
+      </div>
+    </div>
+
+    <!-- ===== Step 5: Mandatory workflow ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">05</div>
+        <div class="anatomy-step-tag">CORPO · WORKFLOW</div>
+        <div class="anatomy-step-title">Procedimento obrigatório — o ritual de 5 etapas</div>
+        <div class="anatomy-step-why">
+          O bloco que <strong>mais reduz risco</strong>. Força o agente a seguir o mesmo procedimento toda vez. Sem isso, ele improvisa.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <pre class="anatomy-code" data-lang="SKILL.md (linhas 17-48)"><span class="md-h">## Mandatory workflow</span>
+
+<span class="md-h">### 1. Identify before acting</span>
+```rsc
+<span class="rsc-cmd">/system resource print</span>
+<span class="rsc-cmd">/system identity print</span>
+<span class="rsc-cmd">/system clock print</span>
+```
+RouterOS 6 and 7 differ significantly in BGP, OSPF, IPv6,
+container, and ROSE syntax.
+
+<span class="md-h">### 2. Snapshot before mutating</span>
+```rsc
+<span class="rsc-cmd">/export file=pre-change-$(date +%Y%m%d-%H%M)</span>
+<span class="rsc-cmd">/system backup save name=pre-change</span>
+```
+Skip only for read-only ops.
+
+<span class="md-h">### 3. Apply with safety</span>
+For risky changes from remote session, schedule self-heal first:
+```rsc
+<span class="rsc-cmd">/system scheduler add name=rollback start-time=startup ...</span>
+```
+
+<span class="md-h">### 4. Validate</span>
+Always run matching <span class="md-bold">`print`</span> after change.
+
+<span class="md-h">### 5. Report</span> using the [Report template](#report-template).</pre>
+        <p>Cada etapa é um <strong>header markdown próprio</strong>. Isso não é cosmético — o agente referencia esses anchors no raciocínio interno ("vou pular pro Step 3 porque já temos snapshot"). Headers numerados ajudam o modelo a se auto-localizar no procedimento.</p>
+        <p><strong>Boa prática:</strong> sempre incluir o <em>porquê</em> junto da regra ("RouterOS 6 and 7 differ significantly"). O agente respeita melhor regras com justificativa do que regras absolutas.</p>
+      </div>
+    </div>
+
+    <!-- ===== Step 6: Connection / env vars ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">06</div>
+        <div class="anatomy-step-tag">CORPO · CONTRATO COM A INFRA</div>
+        <div class="anatomy-step-title">Connection — env vars como API explícita</div>
+        <div class="anatomy-step-why">
+          A skill declara o contrato: quais variáveis precisa, defaults, e como conectar. Sem isso o agente <em>chuta</em> usuários e portas.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <pre class="anatomy-code" data-lang="SKILL.md (linhas 50-67)"><span class="md-h">## Connection</span>
+
+| Variable             | Default | Purpose       |
+|----------------------|---------|---------------|
+| `MIKROTIK_HOST`      | —       | required      |
+| `MIKROTIK_USER`      | `admin` | SSH/API user  |
+| `MIKROTIK_PORT`      | `22`    | SSH port      |
+| `MIKROTIK_API_PORT`  | `443`   | REST port     |
+| `MIKROTIK_API_PASS`  | —       | REST password |
+
+```bash
+<span class="yaml-comm"># SSH</span>
+ssh -p ${MIKROTIK_PORT:-22} ${MIKROTIK_USER}@${MIKROTIK_HOST} \
+    <span class="yaml-str">"&lt;RouterOS command&gt;"</span>
+
+<span class="yaml-comm"># REST API (RouterOS 7.1+)</span>
+curl -sk -u <span class="yaml-str">"${MIKROTIK_USER}:${MIKROTIK_API_PASS}"</span> \
+    https://${MIKROTIK_HOST}:${MIKROTIK_API_PORT}/rest/&lt;endpoint&gt;
+```</pre>
+        <p><strong>Boa prática:</strong> tabela markdown lê melhor que prosa — o agente extrai os campos corretamente. Sempre indicar <em>required</em> vs default. Sempre mostrar o <strong>comando montado</strong> com placeholders das variáveis, não só "use SSH".</p>
+      </div>
+    </div>
+
+    <!-- ===== Step 7: Critical commands by domain ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">07</div>
+        <div class="anatomy-step-tag">CORPO · KNOWLEDGE BASE</div>
+        <div class="anatomy-step-title">Comandos críticos por domínio</div>
+        <div class="anatomy-step-why">
+          Catálogo de comandos copia-cola que o agente <strong>não precisa inventar</strong>. Reduz alucinação a quase zero em sintaxe operacional.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <pre class="anatomy-code" data-lang="SKILL.md (linhas 71-98)"><span class="md-h">## Critical commands by domain</span>
+
+<span class="md-h">### System and health</span>
+```rsc
+<span class="rsc-cmd">/system resource print</span>
+<span class="rsc-cmd">/system health print</span>
+<span class="rsc-cmd">/log print where topics~"error|critical"</span>
+<span class="rsc-cmd">/log print follow-only</span>
+<span class="rsc-cmd">/tool fetch url=https://1.1.1.1 mode=https keep-result=no</span>
+```
+
+<span class="md-h">### IP and routing</span>
+```rsc
+<span class="rsc-cmd">/ip address print</span>
+<span class="rsc-cmd">/ip route print where dst-address!=0.0.0.0/0</span>
+<span class="rsc-cmd">/ip route check 8.8.8.8 once</span>
+<span class="rsc-cmd">/ip arp print</span>
+```
+
+<span class="md-h">### BGP — version aware</span>
+<span class="yaml-comm"># RouterOS 7</span>
+```rsc
+<span class="rsc-cmd">/routing/bgp/session print</span>
+<span class="rsc-cmd">/routing/bgp/connection print</span>
+```
+<span class="yaml-comm"># RouterOS 6</span>
+```rsc
+<span class="rsc-cmd">/routing bgp peer print</span>
+```</pre>
+        <p><strong>Organização por domínio operacional</strong> (System, Interfaces, IP, BGP, Firewall) — não por categoria acadêmica. O agente busca "como vejo BGP" e encontra o bloco BGP. Sempre marcar diferenças entre versões/sabores quando elas existem.</p>
+        <p><strong>Boa prática:</strong> code fences com a tag de linguagem certa (<code class="inline">rsc</code>, <code class="inline">bash</code>, <code class="inline">python</code>) — o syntax highlighting ajuda o agente a parsear, não só humanos.</p>
+      </div>
+    </div>
+
+    <!-- ===== Step 8: References folder ===== -->
+    <div class="anatomy-step">
+      <div class="anatomy-step-meta">
+        <div class="anatomy-step-num">08</div>
+        <div class="anatomy-step-tag">FILESYSTEM · REFERENCES</div>
+        <div class="anatomy-step-title">references/ — conhecimento sob demanda</div>
+        <div class="anatomy-step-why">
+          SKILL.md fica leve (~8k tokens). Detalhes pesados (templates, casos raros) vão pra <code style="color:var(--cyan);">references/</code> — o agente lê só quando precisa.
+        </div>
+      </div>
+      <div class="anatomy-step-body">
+        <p>O Claude Agent SDK trata <strong>SKILL.md</strong> como contexto sempre carregado, mas a pasta <strong>references/</strong> ao lado é lida sob demanda via <code class="inline">Read</code> tool. Use isso pra:</p>
+        <pre class="anatomy-code" data-lang="references/">mikrotik-ops/
+├── SKILL.md                      <span class="annot"># sempre carregado · ~8k tokens</span>
+└── references/                   <span class="annot"># lido sob demanda</span>
+    ├── routeros-v6-vs-v7.md      <span class="annot"># diffs sintáticos entre versões</span>
+    └── safe-templates.rsc        <span class="annot"># snippets RouterOS prontos</span></pre>
+        <p>Na SKILL.md, mencione as references com link relativo:</p>
+        <pre class="anatomy-code" data-lang="markdown">### BGP — version aware
+Para diferenças completas v6 vs v7, ver
+[<span class="md-bold">references/routeros-v6-vs-v7.md</span>](references/routeros-v6-vs-v7.md).</pre>
+        <p><strong>Por que importa:</strong> contexto é caro. Uma SKILL.md de 30k tokens come o budget que outras 3 skills poderiam usar. Mantendo o core enxuto e detalhes em references, o agente paga só pelo que vai usar de fato.</p>
+      </div>
+    </div>
+
+    <!-- ===== BEST PRACTICES GRID ===== -->
+    <div class="anatomy-intro">
+      <div class="anatomy-intro-label">★ BEST PRACTICES · CHECKLIST</div>
+      <h3>Regras de ouro pra escrever <em>SKILL.md</em> que o agente respeita</h3>
+      <p>Padrões testados em produção — destilados do design das 8 skills do pacote. Use como checklist antes de commitar uma skill nova.</p>
+    </div>
+
+    <div class="bp-grid">
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 01</div>
+        <div class="bp-card-title">Description densa em gatilhos</div>
+        <div class="bp-card-body">Inclua jargão técnico, nomes de hardware e frases coloquiais entre aspas. <code>"BGP do Vivo caiu"</code> ativa melhor que só <code>BGP</code>.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 02</div>
+        <div class="bp-card-title">Workflow em headers numerados</div>
+        <div class="bp-card-body">O agente referencia anchors internos durante o raciocínio. <code>### 1. Identify</code> &gt; bullet sem número.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 03</div>
+        <div class="bp-card-title">Confirmação literal pra ops destrutivas</div>
+        <div class="bp-card-body">Exigir frase exata <code>CONFIRMO &lt;cmd&gt;</code> — paráfrases como "pode mandar" são rejeitadas. Bloqueia execução acidental.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 04</div>
+        <div class="bp-card-title">Env vars em tabela markdown</div>
+        <div class="bp-card-body">Tabela com colunas <em>Variable / Default / Purpose</em>. Marcar required com <code>—</code>. O agente parseia melhor que prosa.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 05</div>
+        <div class="bp-card-title">Comandos com syntax tag</div>
+        <div class="bp-card-body">Code fences sempre com tag (<code>```rsc</code>, <code>```bash</code>). O highlight ajuda o modelo a parsear estrutura.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 06</div>
+        <div class="bp-card-title">Sempre o "porquê" junto da regra</div>
+        <div class="bp-card-body">"Não use queue simples em concentrador grande, vira SMP-bound" &gt; só "use queue tree". O agente respeita melhor regra com motivo.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 07</div>
+        <div class="bp-card-title">references/ pra detalhes pesados</div>
+        <div class="bp-card-body">SKILL.md ≤ 8k tokens. Templates longos, comparações de versão, casos raros vão pra <code>references/</code>.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 08</div>
+        <div class="bp-card-title">Templates de relatório no fim</div>
+        <div class="bp-card-body">Definir formato de saída (markdown estruturado) na própria skill garante consistência entre runs.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 09</div>
+        <div class="bp-card-title">Versão diferente, bloco diferente</div>
+        <div class="bp-card-body">RouterOS 6 vs 7, VRP V5 vs V8, IOS vs IOS-XR. Sempre marcar e separar — agente não inventa sintaxe da versão errada.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 10</div>
+        <div class="bp-card-title">Identity declara o desvio</div>
+        <div class="bp-card-body">Não escreva "seja útil" (já é default). Escreva o que <em>foge</em> do padrão: idioma, persona, regras de recusa.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 11</div>
+        <div class="bp-card-title">metadata.openclaw mesmo no Claude</div>
+        <div class="bp-card-body">Documentação executável das deps. SDK ignora silenciosamente — mas você ganha portabilidade gratuita.</div>
+      </div>
+      <div class="bp-card">
+        <div class="bp-card-num">▸ BP 12</div>
+        <div class="bp-card-title">Versionar com git</div>
+        <div class="bp-card-body">Cada skill no git, commit por mudança. Quando algo quebra em prod, <code>git blame</code> aponta a regra que mudou.</div>
+      </div>
+    </div>
+
+    <!-- ============ CRIAR UMA SKILL NOVA ============ -->
+    <div class="anatomy-intro">
+      <div class="anatomy-intro-label">⊕ HANDS-ON · CRIAR SUA PRÓPRIA SKILL</div>
+      <h3>Quero <em>criar uma skill</em> nova — qual o caminho?</h3>
+      <p>
+        Dois caminhos válidos: usar o <strong>skill-creator oficial da Anthropic</strong> (gera o esqueleto guiado por perguntas) ou colar o <strong>prompt pronto</strong> abaixo num agente que já tenha contexto da sua infra. Os dois resultam em um <code class="inline">SKILL.md</code> compatível com este pacote.
+      </p>
+    </div>
+
+    <div class="create-paths">
+
+      <!-- Path A — skill-creator oficial -->
+      <div class="create-path">
+        <span class="create-path-tag">Caminho A · Recomendado</span>
+        <div class="create-path-title">Use o skill-creator oficial da Anthropic</div>
+        <div class="create-path-body">
+          A Anthropic mantém um repositório oficial de skills com um <code>skill-creator</code> que faz exatamente isso: te entrevista e gera o <code>SKILL.md</code> no formato correto do Agent SDK. <strong>Funciona perfeitamente</strong> com este pacote — output já é compatível com <code>forum-telecom-skills/skills/</code>.
+          <br><br>
+          <strong>Como usar:</strong>
+          <br>1. Clone o repo oficial das skills da Anthropic.
+          <br>2. Aponte o Claude Code pra ele e ative o <code>skill-creator</code>.
+          <br>3. Responda às perguntas guiadas (nome, persona, gatilhos, env vars).
+          <br>4. Copie o arquivo gerado pra <code>forum-telecom-skills/skills/&lt;sua-skill&gt;/SKILL.md</code>.
+        </div>
+        <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener" class="create-path-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.69-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          github.com/anthropics/skills
+        </a>
+      </div>
+
+      <!-- Path B — prompt manual -->
+      <div class="create-path path-b">
+        <span class="create-path-tag">Caminho B · Manual</span>
+        <div class="create-path-title">Cole o prompt pronto num agente</div>
+        <div class="create-path-body">
+          Se você prefere mais controle (ou quer integrar com a sua infra existente, ler runbooks que você já tem, etc.), use o prompt abaixo em qualquer agente com acesso a leitura de arquivos. Ele vai estudar o padrão da <code>mikrotik-ops</code>, te entrevistar, e gerar o <code>SKILL.md</code> no mesmo estilo.
+          <br><br>
+          <strong>Substitua o placeholder</strong> <code>[DESCREVA AQUI]</code> pelo equipamento ou domínio que você quer cobrir (ex: "OLT Datacom DM4610", "firewall FortiGate", "switch Aruba CX 6300"). O resto do prompt já está calibrado.
+        </div>
+        <a href="#prompt-criar-skill" class="create-path-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          Ir para o prompt
+        </a>
+      </div>
+
+    </div>
+
+    <div class="prompt-block" id="prompt-criar-skill" style="margin-top: 32px;">
+      <div class="prompt-block-header">
+        <span class="prompt-block-label">PROMPT · GERAR SKILL.md NOVA</span>
+        <button class="copy-btn" type="button" data-target="#promptCreateSkillText" aria-label="Copiar prompt">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
+          <span class="copy-btn-text">Copiar</span>
+        </button>
+      </div>
+      <div class="prompt-block-body" id="promptCreateSkillText">Quero criar uma skill nova para o pacote forum-telecom-skills (Claude Agent SDK). Ela vai cobrir: [DESCREVA AQUI O EQUIPAMENTO OU DOMÍNIO — ex: "OLT Datacom DM4610", "firewall FortiGate 200F", "switch Aruba CX 6300", "Juniper MX BNG"].
+
+Antes de gerar uma linha de arquivo, faça o seguinte na ordem:
+
+1. ESTUDE O PADRÃO
+   - Leia https://github.com/clfigueiredo/skills_forumtelecom/blob/main/skills/mikrotik-ops/SKILL.md como referência canônica de estilo, estrutura e nível de detalhe.
+   - Anote mentalmente: frontmatter (name + description densa em gatilhos), bloco metadata.openclaw, persona/identity, workflow obrigatório de 5 etapas (Identify · Snapshot · Apply · Validate · Report), tabela de env vars, comandos críticos por domínio operacional, padrão de confirmação literal "CONFIRMO &lt;comando&gt;" para ops destrutivas, e o uso da pasta references/ para conteúdo pesado.
+
+2. ME ENTREVISTE
+   Antes de escrever qualquer coisa, me pergunte (uma de cada vez ou em bloco):
+   - Qual o papel do equipamento no provedor? (borda BGP, BNG/BRAS, OLT, switch core, firewall, etc.)
+   - Quais modelos e firmwares mais comuns? Há diferenças sintáticas relevantes entre versões (tipo RouterOS 6 vs 7, VRP V5 vs V8)?
+   - Como conectamos? (SSH, NETCONF, REST API, Telnet legado, API proprietária, gNMI)
+   - Quais env vars precisam ser provisionadas? (host, user, port, token, senha API)
+   - Quais são as 5-10 operações mais frequentes? Marque quais são destrutivas.
+   - Existe gancho de safety nativo? (commit-confirmed, snapshot, scheduler de rollback, safe-mode)
+   - Quais comandos coloquiais típicos os técnicos mandam no chat? ("BGP caiu", "cliente sem net", "sobe banda do X")
+   - Há armadilhas comuns conhecidas? (limites de API, locks, comandos que parecem read-only mas mutam)
+
+3. GERE O SKILL.md
+   Seguindo exatamente o padrão da mikrotik-ops:
+   - Frontmatter YAML: name (kebab-case, único), description começando com 1 frase de papel + "Use when..." + lista exaustiva de gatilhos (jargão técnico, modelos de hardware, frases coloquiais entre aspas).
+   - metadata.openclaw com emoji, requires.anyBins (binários necessários no PATH) e requires.env (env vars obrigatórias).
+   - Seção ## Identity em PT-BR: peer engineer, conciso, honesto sobre incertezas, regras de recusa.
+   - Seção ## Mandatory workflow com 5 sub-headers numerados (### 1. Identify, ### 2. Snapshot, ### 3. Apply, ### 4. Validate, ### 5. Report). Cada um com comandos concretos do equipamento.
+   - Seção ## Connection: tabela markdown de env vars (Variable / Default / Purpose) + comandos prontos de SSH/REST/etc com placeholders.
+   - Seção ## Critical commands by domain: organizada por domínio operacional (não por categoria acadêmica), com code fences usando a tag de linguagem correta. Sempre marcar diferenças entre versões/sabores quando existirem.
+   - Padrão de confirmação literal "CONFIRMO &lt;comando&gt;" exigido para qualquer operação destrutiva (deletar, factory reset, derrubar peer, reload, etc.).
+   - Template de relatório no final (## Report template) — markdown estruturado pra saída consistente.
+   - Tudo em ≤ 8 mil tokens. Conteúdo pesado (templates longos, comparações de versão, casos raros) você sugere movimentar para references/, mas NÃO gere ainda.
+
+4. ENTREGA
+   - Cole o conteúdo completo do SKILL.md num único bloco markdown.
+   - Liste, em separado, quais arquivos deveriam ir na pasta references/ e por quê (sem gerar — só sugerir).
+   - Liste perguntas em aberto que você precisa que eu valide antes de eu commitar a skill.
+   - Não execute nada, não crie arquivo no disco, não rode build, não faça commit. Só me devolva o conteúdo aqui pra eu revisar.</div>
+    </div>
+
+    <div class="install-hint">
+      <strong>Depois de gerar (pelos dois caminhos):</strong> crie a pasta <code>forum-telecom-skills/skills/&lt;sua-skill&gt;/</code>, salve o <code>SKILL.md</code> dentro, commit no git e o agente carrega automaticamente na próxima execução — sem reinstalação, sem rebuild de container, sem reinício. Skills são <strong>hot-loaded</strong> a cada nova sessão do agente.
+    </div>
+  </div>
+</section>
+
+<!-- ============== WORKFLOW ============== -->
+<section class="section" id="workflow">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-num">05.2 · WORKFLOW</div>
+        <h2 class="section-title">O ciclo de <em>5 etapas</em> obrigatórias</h2>
+        <p class="section-lead">
+          Toda skill obriga o agente a seguir o mesmo ritual antes de mexer em produção. Não é decoração — é o que separa um agente que ajuda de um agente que derruba a rede do cliente.
+        </p>
+      </div>
+    </div>
+
+    <div class="workflow-row">
+      <div class="wf-step">
+        <div class="wf-num">01</div>
+        <div class="wf-name">Identify</div>
+        <div class="wf-desc">Versão do firmware, hostname, contexto do equipamento.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">02</div>
+        <div class="wf-name">Snapshot</div>
+        <div class="wf-desc">Backup ou export antes de qualquer mudança.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">03</div>
+        <div class="wf-name">Apply</div>
+        <div class="wf-desc">Aplica com safe-mode, commit-confirmed ou scheduler de rollback.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">04</div>
+        <div class="wf-name">Validate</div>
+        <div class="wf-desc">Confere que a mudança fez efeito esperado.</div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">05</div>
+        <div class="wf-name">Report</div>
+        <div class="wf-desc">Relatório markdown estruturado do que foi feito.</div>
+      </div>
+    </div>
+
+    <div class="confirm">
+      <div class="confirm-label">SAFETY · CONFIRMATION PATTERN</div>
+      <div class="confirm-title">Ops destrutivas exigem confirmação literal</div>
       <p class="confirm-body">
-        Tanto o NetAgent (Claude Agent SDK) quanto o OpenClaw consomem os mesmos arquivos. Mantenha um único diretório como fonte da verdade e os dois runtimes apontam pra ele. Toda alteração de comando ou novo template fica num lugar só — sem divergência entre ambientes.
+        Para <strong>qualquer</strong> operação que pode quebrar produção (apagar regra, derrubar peer BGP, deletar VM, dar reload, factory reset), o agente <strong>recusa</strong> até receber do usuário a frase exata
+        <span class="confirm-cmd">CONFIRMO &lt;comando&gt;</span> — paráfrases como "ok pode mandar" ou "manda ver" são rejeitadas. Isso é instrução fixa em todas as 8 skills.
       </p>
     </div>
   </div>
@@ -1570,6 +3132,34 @@ commands without explicit confirmation.
 
   document.querySelectorAll('.skill-card, .step, .wf-step, .stat').forEach(el => {
     observer.observe(el);
+  });
+
+  // Copy prompt buttons — generic, supports multiple via data-target
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    const sel = btn.dataset.target;
+    const target = sel ? document.querySelector(sel) : null;
+    if (!target) return;
+    btn.addEventListener('click', async () => {
+      const text = target.innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (_) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+      const label = btn.querySelector('.copy-btn-text');
+      const original = label.textContent;
+      label.textContent = 'Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        label.textContent = original;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
   });
 </script>
 
