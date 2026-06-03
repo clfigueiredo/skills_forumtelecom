@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analista de Redes"
+  short_description: "Criar criativos e imagens do curso"
+  default_prompt: "Use $analista-de-redes to create 5 promotional image creatives for the Forum Telecom networking course."

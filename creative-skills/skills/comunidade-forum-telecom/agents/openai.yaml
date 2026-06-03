@@ -1,0 +1,5 @@
+version: 1
+display:
+  display_name: "Comunidade Forum Telecom"
+  short_description: "Crie criativos para a Comunidade Forum Telecom."
+  default_prompt: "Use $comunidade-forum-telecom para criar criativos promocionais da Comunidade Forum Telecom."

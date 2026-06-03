@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zabbix"
+  short_description: "Criar criativos e molduras do curso"
+  default_prompt: "Use $zabbix to create 12 promotional creatives with video placeholders for the Forum Telecom Zabbix course."
